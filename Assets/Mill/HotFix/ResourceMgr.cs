@@ -274,7 +274,6 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
 
         ///转成小写
         assetName资源名 = assetName资源名.ToLower();
-        Debug.Log(assetName资源名);
         T obj = Resources.Load<T>(assetName资源名);
         if (obj != null)
             return obj;
@@ -299,7 +298,11 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
 
     public static GameObject CreateObj(string name)
     {
-        return GameObject.Instantiate<GameObject>(Load<GameObject>(name));
+        GameObject g = Load<GameObject>(name);
+        if (g != null)
+            return GameObject.Instantiate<GameObject>(g);
+        else
+            return null;
     }
 
     #endregion

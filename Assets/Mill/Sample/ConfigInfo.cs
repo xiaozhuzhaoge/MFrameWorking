@@ -38,6 +38,7 @@ public partial class ConfigInfo : MonoSingleton<ConfigInfo> {
         //}
 
         RegisterConfigHandler<MusicConfig>("Configs/json/musics", musicConfig);
+        RegisterConfigHandler<SkillChainConfig>("Configs/json/SkillChain", skillChainConfig);
         ConfigInfo.ReadAllConfigsFuc();
        
     }

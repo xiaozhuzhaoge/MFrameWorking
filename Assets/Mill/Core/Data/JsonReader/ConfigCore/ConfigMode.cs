@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class ConfigMode : IConfig {
+public abstract class ConfigMode : IConfig {
 
     public int id;
 

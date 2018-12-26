@@ -7,6 +7,10 @@ public delegate void DoEvetHandler(string stateName);
 
 public class PlayerCtr : MonoBehaviour {
 
+    /// <summary>
+    /// 技能组ID
+    /// </summary>
+    public int skillChainGroupId;
     public CharacterController cc;
     public float speed;
     public Animator ani;
@@ -81,46 +85,12 @@ public class PlayerCtr : MonoBehaviour {
     {
 
         ///注册动画帧事件
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_SINGLEATTACK01", "CastEffect", 0.254f, "Radius|78|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_SINGLEATTACK01", "CastEffect", 0.254f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|10");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_SINGLEATTACK02", "CastEffect", 0.37f, "Radius|120|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_SINGLEATTACK02", "CastEffect", 0.37f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|20");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_SINGLEATTACK03", "CastEffect", 0.139f, "RadiusPenetrated|160|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_SINGLEATTACK03", "CastEffect", 0.139f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|-40");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_SINGLEATTACK04", "CastEffect", 0.177f, "SpherePenetrated|0,0,0|0.3|0,0,1|10");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_SINGLEATTACK04", "CastEffect", 0.177f, "ShowEffect|0,1,4|0,0,1|10|FireCylinder|-40");
+        List<SkillChainConfig> SkillChains = SkillChainConfig.GetSkillChains(skillChainGroupId);
 
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK01", "CastEffect", 0.063f, "RadiusPenetrated|90|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK01", "CastEffect", 0.063f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|20");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK01", "CastEffect", 0.247f, "RadiusPenetrated|90|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK01", "CastEffect", 0.247f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|-20");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK01", "CastEffect", 0.368f, "RadiusPenetrated|90|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK01", "CastEffect", 0.368f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|20");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK01", "CastEffect", 0.622f, "RadiusPenetrated|90|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK01", "CastEffect", 0.622f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|-20");
-
-
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK02", "CastEffect", 0.093f, "Radius|90|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK02", "CastEffect", 0.093f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|20");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK02", "CastEffect", 0.398f, "Radius|90|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK02", "CastEffect", 0.398f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|30");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK02", "CastEffect", 0.578f, "Radius|90|10|2.1");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK02", "CastEffect", 0.578f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|-30");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK02", "CastEffect", 0.644f, "Radius|50|10|5");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK02", "CastEffect", 0.644f, "ShowEffect|0,1,2.1|0,0,1|10|BaseStrikeEffect|0");
-
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK03", "CastEffect", 0.093f, "Radius|160|10|2.5");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK03", "CastEffect", 0.45f, "Radius|160|10|3");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK03", "CastEffect", 0.621f, "SpherePenetrated|0,0,0|2|0,0,1|0");
-
-
-  
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK04", "CastEffect", 0.11f, "RadiusPenetrated|50|20|5");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK04", "CastEffect", 0.31f, "ThrowBoxPenetrated|0,1,0|-1,0,1|10|AuraWave|5|90");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK04", "CastEffect", 0.31f, "ThrowBoxPenetrated|0,1,0|0,0,1|10|AuraWave|5|90");
-        Utility.RigisterAnimationEvent(ani, "OrientalSword_COMBOATTACK04", "CastEffect", 0.31f, "ThrowBoxPenetrated|0,1,0|1,0,1|10|AuraWave|5|90");
-
-       
+        for (int i = 0;i < SkillChains.Count; i++)
+        {
+            Utility.RigisterAnimationEvent(ani, SkillChains[i].animationStateName, SkillChains[i].functionName, SkillChains[i].doPercent, SkillChains[i].instruction);
+        }
 
         playerFsm.SetRoot(new MoveState(playerFsm, fsm.ActiveStateName));
         Debug.Log(fsm.ActiveStateName);
@@ -375,6 +345,7 @@ public class PlayerCtr : MonoBehaviour {
     
     public void ThrowBox(Vector3 pos,Vector3 dir,float speed,string effect,float time, float angle) {
         var go = ResourceMgr.CreateObj(effect);
+        if (go == null) return;
         go.transform.position = transform.TransformPoint(pos);
         Rigidbody rig = go.AddComponent<Rigidbody>();
         rig.useGravity = false;
@@ -390,6 +361,7 @@ public class PlayerCtr : MonoBehaviour {
     public void ThrowBoxAll(Vector3 pos, Vector3 dir, float speed, string effect, float time, float angle)
     {
         var go = ResourceMgr.CreateObj(effect);
+        if (go == null) return;
         go.transform.position = transform.TransformPoint(pos);
         Rigidbody rig = go.AddComponent<Rigidbody>();
         rig.useGravity = false;
@@ -415,6 +387,8 @@ public class PlayerCtr : MonoBehaviour {
     /// <param name="angle"></param>
     public void CreateEffect(Vector3 pos, Vector3 dir,float time, string effect, float angle) {
         var go = ResourceMgr.CreateObj(effect);
+         
+        if (go == null) return;
         go.transform.position = transform.TransformPoint(pos);
         go.transform.rotation = Quaternion.LookRotation(transform.TransformDirection(dir));
         if(go.transform.Find("EffectOffset") != null)
@@ -430,6 +404,9 @@ public class PlayerCtr : MonoBehaviour {
     /// </summary>
     public bool isJumpingUp;
 
+    /// <summary>
+    /// 检测是否落地
+    /// </summary>
     public void CheckOnGround() {
 
         if(isJumpingUp == false)

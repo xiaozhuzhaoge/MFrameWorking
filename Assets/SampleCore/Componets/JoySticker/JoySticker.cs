@@ -38,6 +38,7 @@ public class JoySticker : MonoSingleton<JoySticker>, IPointerDownHandler, IPoint
 	// Update is called once per frame
 	void Update () {
 
+#if UNITY_EDITOR
 
         if (Move)
         {
@@ -55,6 +56,12 @@ public class JoySticker : MonoSingleton<JoySticker>, IPointerDownHandler, IPoint
                 RecoverToZero();
             }
         }
+
+#elif UNITY_ANDROID
+
+#endif
+
+
     }
 
     float timeAcc;

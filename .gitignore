@@ -1,0 +1,9 @@
+MFrameWorking.csproj
+MFrameWorking.Editor.csproj
+MFrameWorking.sln
+MFrameWorking.Plugins.csproj
+MFrameWorking.Editor.Plugins.csproj
+Temp/
+Library/
+.vs/
+UnityPackageManager/

@@ -278,6 +278,8 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         T obj = Resources.Load<T>(assetName资源名);
         if (obj != null)
             return obj;
+        if (caches资源包与所有对应的资源数据 == null)
+            return null;
 
         foreach (var abName键值对 in caches资源包与所有对应的资源数据)
         {

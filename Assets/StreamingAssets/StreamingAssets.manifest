@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 4095658254
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: animators.next
+      Dependencies: {}
+    Info_1:
+      Name: effects.next
+      Dependencies: {}
+    Info_2:
+      Name: fsmtemple.next
+      Dependencies: {}
+    Info_3:
+      Name: materials.next
+      Dependencies: {}
+    Info_4:
+      Name: prefabs.next
+      Dependencies: {}
+    Info_5:
+      Name: resources/configs.next
+      Dependencies: {}
+    Info_6:
+      Name: resources/configs/json.next
+      Dependencies: {}
+    Info_7:
+      Name: scenes.next
+      Dependencies:
+        Dependency_0: animators.next
+        Dependency_1: fsmtemple.next
+        Dependency_2: materials.next
+        Dependency_3: sprites.next
+        Dependency_4: sprites/loadingbar.next
+    Info_8:
+      Name: sprites.next
+      Dependencies: {}
+    Info_9:
+      Name: sprites/loadingbar.next
+      Dependencies: {}

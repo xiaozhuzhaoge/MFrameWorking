@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 525504590
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 459ed34b26f53caceb4dc9a8fa4b7dd5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 31d6cfe0d16ae931b73c59d7e0c089c0
+HashAppended: 0
+ClassTypes: []
+Assets:
+- Assets/Mill/Assets/Scenes/UI.unity
+- Assets/Mill/Assets/Scenes/Main.unity
+- Assets/Mill/Assets/Scenes/LuaWithAB.unity
+- Assets/Mill/Assets/Scenes/Login.unity
+Dependencies:
+- D:/MFrameWorking/Assets/StreamingAssets/animators.next
+- D:/MFrameWorking/Assets/StreamingAssets/fsmtemple.next
+- D:/MFrameWorking/Assets/StreamingAssets/materials.next
+- D:/MFrameWorking/Assets/StreamingAssets/sprites.next
+- D:/MFrameWorking/Assets/StreamingAssets/sprites/loadingbar.next

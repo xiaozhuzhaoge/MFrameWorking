@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 914155556
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7e9fee51b0fecd0934b1a69c7f0fa37f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5e821c16c4d7fd5d8e97932dbeb3de8b
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 1219815696, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Mill/Assets/FSMTemple/Role.asset
+Dependencies: []

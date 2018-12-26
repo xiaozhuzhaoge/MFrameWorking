@@ -1,0 +1,9 @@
+﻿[
+  {
+    "ID": 1.0,
+    "ClassName": "MusicConfig",
+    "ConfigPath": "Configs/json/musics",
+    "AssetName": "musics",
+    "ContainerName": "musicConfig"
+  }
+]

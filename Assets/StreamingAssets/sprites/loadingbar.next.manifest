@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 2341914106
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1e995d1a6ac6553ffc712b61e21e1707
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 21f0dc8ebad690f009368069428e0a1a
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Mill/Assets/Sprites/LoadingBar/LoadingBar_Fill.png
+- Assets/Mill/Assets/Sprites/LoadingBar/LoadingBar_Background.png
+Dependencies: []

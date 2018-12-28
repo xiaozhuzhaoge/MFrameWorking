@@ -43,7 +43,6 @@ namespace HutongGames.PlayMaker.Actions
                 AttackMenu.Instance.flagCallback[i] -= OnButtonClick;
                 AttackMenu.Instance.flagCallback[i] += OnButtonClick;
             }
-            Debug.Log("Enter");
         }
 
         public void OnButtonClick(int index,bool flag) {

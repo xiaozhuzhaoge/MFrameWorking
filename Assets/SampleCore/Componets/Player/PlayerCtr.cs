@@ -92,30 +92,24 @@ public class PlayerCtr : MonoBehaviour {
             Utility.RigisterAnimationEvent(ani, SkillChains[i].animationStateName, SkillChains[i].functionName, SkillChains[i].doPercent, SkillChains[i].instruction);
         }
 
-        playerFsm.SetRoot(new MoveState(playerFsm, fsm.ActiveStateName));
-        Debug.Log(fsm.ActiveStateName);
+        ///设置根节点状态信息
+        playerFsm.SetRoot(new SkillState(playerFsm, fsm.ActiveStateName));
+ 
         for (int i = 0; i < fsm.FsmStates.Length; i++)
         {
-            Debug.Log(fsm.FsmStates[i].Name);
+            ///抛出根节点状态信息
             if (fsm.FsmStates[i].Name.Equals(fsm.ActiveStateName))
             {
                 continue;
             }
-            playerFsm.RegisterState(new SkillState(playerFsm, fsm.FsmStates[i].Name, new DoEvetHandler(Logical)));
+            playerFsm.RegisterState(new SkillState(playerFsm, fsm.FsmStates[i].Name));
         }
+       
         Debug.Log("根节点" + playerFsm.RootState.Name);
     }
-
+   
     #region 技能脚本
 
-    /// <summary>
-    /// 这里使用C#进行逻辑编写，其实连接XLUA就可以做热更新扩展，每个技能连接的技能逻辑放在lua脚本里最好,这里临时使用switch状态机去制作
-    /// </summary>
-    public void Logical(string stateName) {
-        TextAsset asset = ResourceMgr.Load<TextAsset>(stateName);
-        if(asset != null)
-        LuaEv.Instance.SMachine.DoString(asset.text);
-    }
 
     List<Vector3> temp = new List<Vector3>();
   

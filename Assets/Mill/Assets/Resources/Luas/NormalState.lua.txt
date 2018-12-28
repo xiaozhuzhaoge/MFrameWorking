@@ -1,0 +1,18 @@
+UnityEngine = CS.UnityEngine
+Vector3 = UnityEngine.Vector3
+Camera = UnityEngine.Camera
+PlayerCtr = CS.PlayerCtr
+Debug = CS.UnityEngine.Debug
+
+local PlayerCtr mc = nil
+
+function OnEnter()
+   --mc = self.owner:GetComponent(typeof(PlayerCtr))   
+end
+
+function OnUpdate()
+   local dir = CS.JoySticker.Instance.dir
+   local moveDir = Camera.main.transform:TransformDirection(Vector3(dir.x,0,dir.y))
+   moveDir.y = 0
+   Debug.Log(type(self))
+end

@@ -7,3 +7,5 @@ Temp/
 Library/
 .vs/
 UnityPackageManager/
+obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache
+obj/

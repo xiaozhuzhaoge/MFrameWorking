@@ -22,7 +22,7 @@ public class MakeHotFix : MonoSingleton<MakeHotFix> {
 			    Debug.LogError ("你的热更补丁资源包有问题" + hotFixName);
 			return;
 		}
-		LuaEv.Instance.SMachine.DoString (asset.text);
+		LuaEv.SMachine.DoString (asset.text);
 	}
  
 }

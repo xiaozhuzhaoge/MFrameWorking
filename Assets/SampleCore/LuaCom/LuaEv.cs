@@ -6,14 +6,20 @@ using XLua;
 [CSharpCallLua]
 public class LuaEv : MonoSingleton<LuaEv> {
 
-    private LuaEnv mev;
+    private static LuaEnv mev;
     /// <summary>
     /// 获取Lua虚拟机 全局唯一
     /// </summary>
-    public LuaEnv SMachine
+    public static LuaEnv SMachine
     {
-        set { if (mev == null) mev = new LuaEnv(); }
-        get { return mev; }
+        set {
+            mev = value;
+        }
+        get
+        {
+            if (mev == null) mev = new LuaEnv();
+            return mev;
+        }
     }
 
     internal static float lastGCTime = 0;

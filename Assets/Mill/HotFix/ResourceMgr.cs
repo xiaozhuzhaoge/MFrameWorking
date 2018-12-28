@@ -237,26 +237,33 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     /// <returns></returns>
     public static Object Load(string assetName资源名)
     {
-        ///转成小写
-        assetName资源名 = assetName资源名.ToLower();
-        Debug.Log(assetName资源名);
-        Object obj = Resources.Load(assetName资源名);
-        if (obj != null)
-            return obj;
-
-        foreach (var abName键值对 in caches资源包与所有对应的资源数据)
+        
+        if (caches资源包与所有对应的资源数据 != null)
         {
-            ///找到了指定资源对应的资源包名
-            if (abName键值对.Value.ContainsKey(assetName资源名))
+            ///转成小写
+            assetName资源名 = assetName资源名.ToLower();
+ 
+            foreach (var abName键值对 in caches资源包与所有对应的资源数据)
             {
-                ///资源包名 abName键值对.Key
-                AssetBundle ab = caches资源包缓存[abName键值对.Key];
-                if (ab != null)
+                ///找到了指定资源对应的资源包名
+                if (abName键值对.Value.ContainsKey(assetName资源名))
                 {
-                   return ab.LoadAsset(abName键值对.Value[assetName资源名]);
+                    ///资源包名 abName键值对.Key
+                    AssetBundle ab = caches资源包缓存[abName键值对.Key];
+                    if (ab != null)
+                    {
+                        return ab.LoadAsset(abName键值对.Value[assetName资源名]);
+                    }
                 }
             }
         }
+        else
+        {
+            Object obj = Resources.Load(assetName资源名);
+            if (obj != null)
+                return obj;
+        }
+
         return null;
     }
 
@@ -272,27 +279,37 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         //System.Object
         //UnityEngine.Object
 
-        ///转成小写
-        assetName资源名 = assetName资源名.ToLower();
-        T obj = Resources.Load<T>(assetName资源名);
-        if (obj != null)
-            return obj;
-        if (caches资源包与所有对应的资源数据 == null)
-            return null;
-
-        foreach (var abName键值对 in caches资源包与所有对应的资源数据)
+        
+        if (caches资源包与所有对应的资源数据 != null)
         {
-            ///找到了指定资源对应的资源包名
-            if (abName键值对.Value.ContainsKey(assetName资源名))
+            ///转成小写
+            assetName资源名 = assetName资源名.ToLower();
+
+            foreach (var abName键值对 in caches资源包与所有对应的资源数据)
             {
-                ///资源包名 abName键值对.Key
-                AssetBundle ab = caches资源包缓存[abName键值对.Key];
-                if (ab != null)
+                ///找到了指定资源对应的资源包名
+                if (abName键值对.Value.ContainsKey(assetName资源名))
                 {
-                    return ab.LoadAsset<T>(abName键值对.Value[assetName资源名]);
+                    ///资源包名 abName键值对.Key
+                    AssetBundle ab = caches资源包缓存[abName键值对.Key];
+                    if (ab != null)
+                    {
+                        return ab.LoadAsset<T>(abName键值对.Value[assetName资源名]);
+                    }
                 }
             }
         }
+        else
+        {
+            
+            T obj = Resources.Load<T>(assetName资源名);
+            Debug.Log(assetName资源名 + obj);
+            if (obj != null)
+            {
+                return obj;
+            }
+        }
+
         return null;
     }
 
@@ -303,6 +320,11 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
             return GameObject.Instantiate<GameObject>(g);
         else
             return null;
+    }
+
+    public void LoadAssetsFrom()
+    {
+
     }
 
     #endregion

@@ -2,31 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using XLua;
 
+[LuaCallCSharp]
 public class SkillState : PlayerStateBase
 {
-    DoEvetHandler OnUpdateCallback;
+    public CharacterController ccc;
     public SkillState() { }
 
-    public SkillState(params object[] datas) : base(datas) { }
+    public SkillState(params object[] datas) : base(datas) { ccc = cc;}
 
     public override void OnDataAnalysis(params object[] datas)
     {
         base.OnDataAnalysis(datas);
-        OnUpdateCallback = datas[2] as DoEvetHandler;
     }
-
-    public override void OnEnter(params object[] datas)
-    {
-        ani.SetFloat("speed", 0);
-    }
-
-    public override void OnUpdate()
-    {
-        if(OnUpdateCallback != null)
-        {
-            OnUpdateCallback(ownerMgr.CurrentState.Name);
-        }   
-    }
-
+ 
 }

@@ -4,17 +4,10 @@ using UnityEngine;
 using System;
 using XLua;
 
-[LuaCallCSharp]
 public class SkillState : PlayerStateBase
 {
-    public CharacterController ccc;
     public SkillState() { }
 
-    public SkillState(params object[] datas) : base(datas) { ccc = cc;}
+    public SkillState(params object[] datas): base(datas) { }
 
-    public override void OnDataAnalysis(params object[] datas)
-    {
-        base.OnDataAnalysis(datas);
-    }
- 
 }

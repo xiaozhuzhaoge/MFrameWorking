@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 
-[LuaCallCSharp]
 public class PlayerStateBase : FSMBase
 {
-    protected GameObject owner;
-    protected Animator ani;
-    protected CharacterController cc;
-    protected string anistateName;
+    public GameObject owner;
+    public Animator ani;
+    public CharacterController cc;
+    public string anistateName;
 
     public string LayerName { get { return fsm.FsmVariables.GetFsmString("AniStateName").Value; } }
     public float CurrentAniLength { get { return fsm.FsmVariables.GetFsmFloat("CurrentAniLength").Value; } }
@@ -21,16 +20,11 @@ public class PlayerStateBase : FSMBase
     {
     }
 
-    public PlayerStateBase(params object[] datas) : base(datas)
+    public PlayerStateBase(params object[] datas)
     {
-    }
-
-    public override void OnDataAnalysis(params object[] datas)
-    {
-        base.OnDataAnalysis(datas);
+        OnDataAnalysis(datas);
         owner = ownerMgr.owner;
         ani = owner.GetComponent<Animator>();
         cc = owner.GetComponent<CharacterController>();
-
     }
 }

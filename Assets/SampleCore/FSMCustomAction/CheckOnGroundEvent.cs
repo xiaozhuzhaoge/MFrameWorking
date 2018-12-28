@@ -17,7 +17,7 @@ namespace HutongGames.PlayMaker.Actions
         public FsmString[] ReturnStateNames;
         public FsmFloat heightCompare;
         public FsmFloat NormalizedTime;
-        PlayerCtr _cc;
+        CharacterCtrlBase _cc;
 
         UnityEngine.Animator _animator;
         string rootAnimationStateName;
@@ -35,7 +35,7 @@ namespace HutongGames.PlayMaker.Actions
             base.OnEnter();
             var go = Fsm.GetOwnerDefaultTarget(gameObject);
             _animator = go.GetComponent<Animator>();
-            _cc = go.GetComponent<PlayerCtr>();
+            _cc = go.GetComponent<CharacterCtrlBase>();
             startTime = Time.time;
         }
 

@@ -1,18 +1,27 @@
 UnityEngine = CS.UnityEngine
 Vector3 = UnityEngine.Vector3
 Camera = UnityEngine.Camera
-PlayerCtr = CS.PlayerCtr
+CharacterCtrlBase = CS.CharacterCtrlBase
 Debug = CS.UnityEngine.Debug
+Quaternion = CS.UnityEngine.Quaternion;
+Time = CS.UnityEngine.Time;
 
-local PlayerCtr mc = nil
+local mc = nil
 
 function OnEnter()
-   --mc = self.owner:GetComponent(typeof(PlayerCtr))   
+   mc = self.owner:GetComponent(typeof(CharacterCtrlBase))
 end
+
 
 function OnUpdate()
    local dir = CS.JoySticker.Instance.dir
    local moveDir = Camera.main.transform:TransformDirection(Vector3(dir.x,0,dir.y))
    moveDir.y = 0
-   Debug.Log(type(self))
+   self.cc:SimpleMove(moveDir * mc.speed)
+   if(moveDir ~= Vector3.zero) then
+      self.cc.transform.rotation = Quaternion.Slerp(self.cc.transform.rotation, Quaternion.LookRotation(moveDir), mc.rotationSpeed * Time.fixedDeltaTime);
+   end
+   self.ani:SetFloat("speed", dir.sqrMagnitude * mc.speed);
 end
+
+ 

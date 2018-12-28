@@ -1,1 +1,38 @@
 使用框架时，请先联系本人。谢谢。
+使用须知：
+ (1) 如果使用CharacterCtrlBase 必需使用以下组件 PlayerMaker状态机 控制动作播放，CharacterController必需要带,Animator控制器一定要带
+ (2) 战斗系统需建立在新版动画体系上，目前老版动画不支持
+ (3) CharacterCtrlBase 角色控制组件中提供了许多功能
+     1.OnAwake
+     2.OnStart
+     3.OnUpdate
+     4.OnFixedUpdate
+     5.OnLateUpdate
+ (4) 系统内置状态机组件属性为playerFsm
+ (5) 系统连接Playmaker状态机框架属性为fsm
+ (6) 动画和逻辑变成实时绑定，
+     1.动画跳跃逻辑请在PlayMaker中创建
+     2.每个动画执行的绑定逻辑请在LUA脚本中实现(注意lua脚本名字要和状态机名字对应以lua.txt结尾)
+     3.每个动画的伤害判定以及动画播放功能已经移植至SkillChain表中，请详细阅读SkillChain表的语法
+ (7) 状态机lua脚本请遵循语法，提供以下生命周期使用:
+     这是内部绑定的功能，当然如果你想自定义添加新的生命周期，请在FSMBase中添加新的委托,并在CharacterCtrlBase提供接口中调用自定义事件
+        OnEnter
+        OnUpdate
+        OnExit
+        OnFixedUpdate
+        OnLatedUpdate
+        OnTriggerEnter
+        OnTriggerStay
+        OnTriggerExit
+        OnCollisionEnter
+        OnCollisionStay
+        OnCollisionExit
+        OnBecameInvisible
+        OnBecameVisible
+        OnAnimatorMove
+        OnTransformChildrenChanged
+        OnTransformParentChanged
+        OnApplicationPause
+        OnDestroy
+        OnEnable
+        OnDisable

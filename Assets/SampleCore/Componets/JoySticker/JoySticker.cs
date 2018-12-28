@@ -7,7 +7,8 @@ using UnityEngine.Events;
 
 public delegate void OnJoyStickerMove(Vector3 dir);
 
-public class JoySticker : MonoSingleton<JoySticker>, IPointerDownHandler, IPointerUpHandler{
+public class JoySticker : MonoSingleton<JoySticker>, IPointerDownHandler, IPointerUpHandler
+{
 
     [SerializeField]
     private RectTransform bg;
@@ -31,14 +32,15 @@ public class JoySticker : MonoSingleton<JoySticker>, IPointerDownHandler, IPoint
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         startPos = role.position;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
 
-#if UNITY_EDITOR
+    // Update is called once per frame
+    void Update()
+    {
+
 
         if (Move)
         {
@@ -57,24 +59,38 @@ public class JoySticker : MonoSingleton<JoySticker>, IPointerDownHandler, IPoint
             }
         }
 
-#elif UNITY_ANDROID
-
-#endif
 
 
     }
 
     float timeAcc;
-    void RecoverToZero() {
+    void RecoverToZero()
+    {
         timeAcc += Time.fixedDeltaTime;
         dir = Vector3.Lerp(dir, Vector3.zero, timeAcc / 1f);
         if (OnJoyMove != null)
             OnJoyMove(dir);
     }
 
-    void OnDraging() {
+    void OnDraging()
+    {
         joySticker.alpha = 0.6f;
+#if UNITY_EDITOR
         role.position = Input.mousePosition;
+#elif UNITY_ANDROID
+       Touch[] touches = Input.touches;
+       foreach (var mf in touches)
+       {
+           if(mf.id == -1){
+               continue;
+           }
+
+           if(mf.position.x < Screen.width / 2){
+               role.pos = mf.position;
+               break;
+           }
+       }
+#endif
         bg.position = (Vector2)role.position + Vector2.ClampMagnitude(bg.position - role.position, limit);
         dir = bg.InverseTransformPoint(role.position).normalized;
         if (OnJoyMove != null)
@@ -86,7 +102,7 @@ public class JoySticker : MonoSingleton<JoySticker>, IPointerDownHandler, IPoint
         role.position = bg.position = startPos;
     }
 
-    
+
     public void OnPointerUp(PointerEventData eventData)
     {
         isHover = false;
@@ -105,5 +121,5 @@ public class JoySticker : MonoSingleton<JoySticker>, IPointerDownHandler, IPoint
         if (OnJoyMove != null)
             OnJoyMove(dir);
     }
- 
+
 }

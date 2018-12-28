@@ -50,7 +50,7 @@ public class FireStocket : MonoBehaviour, IHitAnalysis
  
     public void Hit(Collider other)
     {
-        other.GetComponent<PlayerCtr>().fsm.SetState("HitBack" + UnityEngine.Random.Range(1, 3));
+        other.GetComponent<CharacterCtrlBase>().fsm.SetState("HitBack" + UnityEngine.Random.Range(1, 3));
         startTime = Time.time;
     }
 

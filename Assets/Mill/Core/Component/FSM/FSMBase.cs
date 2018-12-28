@@ -4,7 +4,6 @@ using HutongGames;
 using XLua;
 using System;
 
-[LuaCallCSharp]
 public abstract class FSMBase
 {
     public FSMMgr ownerMgr;
@@ -32,6 +31,26 @@ public abstract class FSMBase
     private Action luaFixedUpdate;
     private Action luaLateUpdate;
 
+    private Action<Collider> luaTriggerEnter;
+    private Action<Collider> luaTriggerStay;
+    private Action<Collider> luaTriggerExit;
+    private Action<Collision> luaCollisionEnter;
+    private Action<Collision> luaCollisionStay;
+    private Action<Collision> luaCollisionExit;
+
+    private Action luaBecameInvisible;
+    private Action luaBecameVisible;
+    private Action luaAnimatorMove;
+
+    private Action luaTransformChildrenChanged;
+    private Action luaTransformParentChanged;
+    private Action<bool> luaApplicationPause;
+    private Action luaDestroy;
+
+    private Action luaEnable;
+    private Action luaDisable;
+
+
     protected PlayMakerFSM fsm
     {
         get { return ownerMgr.owner.GetComponent<PlayMakerFSM>(); }
@@ -54,8 +73,8 @@ public abstract class FSMBase
 
         ownerMgr = datas[0] as FSMMgr;
         Name = datas[1] as string;
-        
-        TextAsset ta = ResourceMgr.Load<TextAsset>("Luas/"+name+".lua");
+
+        TextAsset ta = ResourceMgr.Load<TextAsset>("Luas/" + name + ".lua");
 
         Debug.Log("加载脚本" + ta);
         if (ta == null)
@@ -75,6 +94,21 @@ public abstract class FSMBase
         scriptEnv.Get("OnExit", out luaExit);
         scriptEnv.Get("OnFixedUpdate", out luaFixedUpdate);
         scriptEnv.Get("OnLatedUpdate", out luaLateUpdate);
+        scriptEnv.Get("OnTriggerEnter", out luaTriggerEnter);
+        scriptEnv.Get("OnTriggerStay", out luaTriggerStay);
+        scriptEnv.Get("OnTriggerExit", out luaTriggerExit);
+        scriptEnv.Get("OnCollisionEnter", out luaCollisionEnter);
+        scriptEnv.Get("OnCollisionStay", out luaCollisionStay);
+        scriptEnv.Get("OnCollisionExit", out luaCollisionExit);
+        scriptEnv.Get("OnBecameInvisible", out luaBecameInvisible);
+        scriptEnv.Get("OnBecameVisible", out luaBecameVisible);
+        scriptEnv.Get("OnAnimatorMove", out luaAnimatorMove);
+        scriptEnv.Get("OnTransformChildrenChanged", out luaTransformChildrenChanged);
+        scriptEnv.Get("OnTransformParentChanged", out luaTransformParentChanged);
+        scriptEnv.Get("OnApplicationPause", out luaApplicationPause);
+        scriptEnv.Get("OnDestroy", out luaDestroy);
+        scriptEnv.Get("OnEnable", out luaEnable);
+        scriptEnv.Get("OnDisable", out luaDisable);
     }
 
     public virtual void OnEnter(params object[] datas) { if (luaEnter != null) { luaEnter(); } }
@@ -86,6 +120,75 @@ public abstract class FSMBase
     public virtual void OnFixedUpdate() { if (luaFixedUpdate != null) { luaFixedUpdate(); } }
 
     public virtual void OnLatedUpdate() { if (luaLateUpdate != null) { luaLateUpdate(); } }
+
+    public virtual void OnTriggerEnter(Collider other) { if (luaTriggerEnter != null) { luaTriggerEnter(other); } }
+
+    public virtual void OnTriggerStay(Collider other)
+    {
+        if (luaTriggerStay != null) { luaTriggerStay(other); }
+    }
+    public virtual void OnTriggerExit(Collider other)
+    {
+        if (luaTriggerExit != null) { luaTriggerExit(other); }
+    }
+
+    public virtual void OnBecameInvisible()
+    {
+        if (luaBecameInvisible != null) { luaBecameInvisible(); }
+    }
+
+    public virtual void OnBecameVisible()
+    {
+        if (luaBecameVisible != null) { luaBecameVisible(); }
+    }
+
+    public virtual void OnAnimatorMove()
+    {
+        if (luaAnimatorMove != null) { luaAnimatorMove(); }
+    }
+
+    public virtual void OnCollisionEnter(Collision other)
+    {
+        if (luaCollisionEnter != null) { luaCollisionEnter(other); }
+    }
+    public virtual void OnCollisionStay(Collision other)
+    {
+        if (luaCollisionStay != null) { luaCollisionStay(other); }
+    }
+    public virtual void OnCollisionExit(Collision other)
+    {
+        if (luaCollisionExit != null) { luaCollisionExit(other); }
+    }
+
+    public virtual void OnDestroy()
+    {
+        if (luaDestroy != null) { luaDestroy(); }
+    }
+
+    public virtual void OnTransformChildrenChanged()
+    {
+        if (luaTransformChildrenChanged != null) { luaTransformChildrenChanged(); }
+    }
+
+    public virtual void OnTransformParentChanged()
+    {
+        if (luaTransformParentChanged != null) { luaTransformParentChanged(); }
+    }
+
+    public virtual void OnApplicationPause(bool pauseStatus)
+    {
+        if (luaApplicationPause != null) { luaApplicationPause(pauseStatus); }
+    }
+
+    public virtual void OnEnable()
+    {
+        if (luaEnable != null) { luaEnable(); }
+    }
+
+    public virtual void OnDisable()
+    {
+        if (luaDisable != null) { luaDisable(); }
+    }
 
     public virtual void MoveState(string stateName)
     {

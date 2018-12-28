@@ -125,9 +125,9 @@
      <None Include="Assets\Mill\Tools\Editor\ExcelToJson\Assets\ExcelDataReader.DataSet.xml" />
      <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
      <None Include="Assets\ProjectAssets\ImagyVFX\Shaders\DistortionShaker.shader" />
-     <None Include="Assets\XLua\Gen\link.xml" />
      <None Include="Assets\XLua\Examples\02_U3DScripting\LuaTestScript.lua.txt" />
      <None Include="Assets\Plugins\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
+     <None Include="Assets\XLua\Src\Editor\LuaIde\LuaIdeApi.tpl.txt" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
      <None Include="Assets\Plugins\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\ACES.cginc" />
@@ -143,6 +143,7 @@
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Uber.shader" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Blit.shader" />
      <None Include="Assets\XLua\Src\Editor\Template\LuaClassWrapGCM.tpl.txt" />
+     <None Include="Assets\doc.xml" />
      <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
      <None Include="Assets\ProjectAssets\ImagyVFX\Shaders\ProjectorBlended.shader" />
      <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
@@ -150,6 +151,7 @@
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\MotionBlur.shader" />
      <None Include="Assets\XLua\Examples\06_Coroutine\Resources\coruntine_test.lua.txt" />
      <None Include="Assets\XLua\Src\Editor\Template\LuaWrapPusher.tpl.txt" />
+     <None Include="Assets\luaIde\readMe.txt" />
      <None Include="Assets\XLua\Src\Editor\Template\LuaDelegateBridge.tpl.txt" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
      <None Include="Assets\Mill\Tools\Editor\ExcelToJson\Assets\ExcelDataReader.xml" />

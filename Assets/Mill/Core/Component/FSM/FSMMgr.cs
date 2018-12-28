@@ -162,16 +162,4 @@ public class FSMMgr {
         return true;
     }
 
-    public void Update() {
-        currentState.OnUpdate();
-    }
-
-    public void FixedUpdate() {
-        currentState.OnFixedUpdate();
-    }
-
-    public void LateUpdate() {
-        currentState.OnLatedUpdate();
-    }
-
 }

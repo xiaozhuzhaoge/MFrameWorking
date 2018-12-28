@@ -11,6 +11,7 @@ using System;
 using XLua;
 using System.Reflection;
 using System.Linq;
+using UnityEngine;
 
 //配置的详细介绍请看Doc下《XLua的配置.doc》
 public static class ExampleConfig
@@ -229,4 +230,14 @@ public static class ExampleConfig
                 new List<string>(){"System.IO.DirectoryInfo", "Create", "System.Security.AccessControl.DirectorySecurity"},
                 new List<string>(){"UnityEngine.MonoBehaviour", "runInEditMode"},
             };
+
+
+    [LuaCallCSharp]
+    public static List<Type> mymodule_lua_call_cs_list = new List<Type>(){
+        typeof(GameObject),
+        typeof(Dictionary<string,int>),
+        typeof(FSMBase),
+        typeof(PlayerStateBase),
+        typeof(SkillState),
+    };
 }

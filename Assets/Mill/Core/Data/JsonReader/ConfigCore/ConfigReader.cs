@@ -12,8 +12,7 @@ public class ConfigReader
 	{
 		string _content = null;
 		if (String.IsNullOrEmpty (content)) {
-			TextAsset ta = Resources.Load<TextAsset> (name);
-       
+			TextAsset ta = ResourceMgr.Load<TextAsset> (name);
 		    _content = ta.text;
            
 		}

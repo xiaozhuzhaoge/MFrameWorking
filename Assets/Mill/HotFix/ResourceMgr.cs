@@ -11,7 +11,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     /// <summary>
     /// AB下载路径
     /// </summary>
-    public string url = "http://127.0.0.1/";
+    public string url = "http://localhost/ABS/";
     public string manifestName = "StreamingAssets";
     public string nextLevel = "Login";
 
@@ -27,47 +27,50 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     /// </summary>
     public static Dictionary<string, Dictionary<string, string>> caches资源包与所有对应的资源数据;
 
-	/// <summary>
-	/// 进度条变动委托
-	/// </summary>
+    /// <summary>
+    /// 进度条变动委托
+    /// </summary>
     public delegate void OnProgressChangeEventHandler(float progress);
 
     public OnProgressChangeEventHandler OnProgressChange;
 
-	/// <summary>
-	/// 进度数据内容变动委托
-	/// </summary>
-	public delegate void OnProgressContentChangedEventHandler(string cotent);
+    /// <summary>
+    /// 进度数据内容变动委托
+    /// </summary>
+    public delegate void OnProgressContentChangedEventHandler(string cotent);
 
-	public OnProgressContentChangedEventHandler OnProgressContentChange;
+    public OnProgressContentChangedEventHandler OnProgressContentChange;
 
     private float progress;
     public float Progress
     {
         get { return progress; }
-        set {
+        set
+        {
             if (progress < value)
             {
-				///监听变动
+                ///监听变动
                 OnProgressChange(value);
             }
             progress = value;
         }
     }
 
-	private string currentProgress; 
+    private string currentProgress;
 
-	public string CurrentProgress{
-		get { return currentProgress; }
-		set {
-			if (currentProgress != value)
-			{
-				///监听变动
-				OnProgressContentChange(value);
-			}
-			currentProgress = value;
-		}
-	}
+    public string CurrentProgress
+    {
+        get { return currentProgress; }
+        set
+        {
+            if (currentProgress != value)
+            {
+                ///监听变动
+                OnProgressContentChange(value);
+            }
+            currentProgress = value;
+        }
+    }
 
     protected override void Initialize()
     {
@@ -81,8 +84,9 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     /// <param name="abName">资源包名</param>
     /// <param name="ab">资源包</param>
     /// <returns></returns>
-    public static bool AddAbToCache(string abName,AssetBundle ab) {
-        
+    public static bool AddAbToCache(string abName, AssetBundle ab)
+    {
+
         if (caches资源包缓存 == null)
             caches资源包缓存 = new Dictionary<string, AssetBundle>();
 
@@ -97,8 +101,9 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     /// </summary>
     /// <param name="abName">资源包名</param>
     /// <returns></returns>
-    public static AssetBundle GetAbFromCache(string abName) {
-        
+    public static AssetBundle GetAbFromCache(string abName)
+    {
+
         if (caches资源包缓存 != null)
         {
             if (caches资源包缓存.ContainsKey(abName))
@@ -115,7 +120,8 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     /// <param name="AssetName"></param>
     /// <param name="AssetPath"></param>
     /// <returns></returns>
-    public static bool AddIntoCacheAssets(string AbName,string AssetName,string AssetPath) {
+    public static bool AddIntoCacheAssets(string AbName, string AssetName, string AssetPath)
+    {
 
         if (caches资源包与所有对应的资源数据 == null)
         {
@@ -132,7 +138,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         return false;
     }
 
-    
+
     #endregion
 
     #region 通过网络下载资源
@@ -144,13 +150,14 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     /// <param name="abName">资源包名</param>
     /// <param name="hashCode">资源包哈希值</param>
     /// <returns></returns>
-    IEnumerator DownLoadAssets(string url,string abName,Hash128 hashCode) {
-        
+    IEnumerator DownLoadAssets(string url, string abName, Hash128 hashCode)
+    {
+
         ///下载指定的资源包 
         ///1.如果本地不存在这个资源 直接下载 直接保存到本地缓存中
         ///2.如果本地存在这个资源进行 hashcode对比 如果不一样进行下载解析资源包 如果一样解析本地资源包
-        WWW download = WWW.LoadFromCacheOrDownload(url + abName,hashCode);
-       Debug.Log("下载资源包 " + url + abName + " 哈希值 " + hashCode);
+        WWW download = WWW.LoadFromCacheOrDownload(url + abName, hashCode);
+        Debug.Log("下载资源包 " + url + abName + " 哈希值 " + hashCode);
         ///等待HTTP请求返回
         yield return download;
 
@@ -169,7 +176,8 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         download.Dispose();
     }
 
-    public IEnumerator GetManifest(string url,string abName){
+    public IEnumerator GetManifest(string url, string abName)
+    {
 
         ///下载资源包 
         WWW donwloadManifest = new WWW(url + abName);
@@ -178,45 +186,46 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         AssetBundle ab = donwloadManifest.assetBundle;
         AddAbToCache(ab.name, ab);
 
-        
         assetbundleManifest = ab.LoadAsset<AssetBundleManifest>("assetbundlemanifest");
         //ab.Load<AssetBundleManifest>
 
         currentProgress = "正在解析资源包数据...";
-		Progress = 0.1f;
-        
+        Progress = 0.1f;
+
         yield return new WaitForSeconds(1f);
 
         float totalAssets = assetbundleManifest.GetAllAssetBundles().Length;
- 
-        foreach (var assetBundleName in assetbundleManifest.GetAllAssetBundles()) {
+
+        foreach (var assetBundleName in assetbundleManifest.GetAllAssetBundles())
+        {
             //Debug.Log("资源包  " + assetBundleName + "  哈希值  " + assetbundleManifest.GetAssetBundleHash(assetBundleName));
             ///下载每一个资源包 
 
-			Progress += (1.0f / totalAssets) * 0.8f;
-			CurrentProgress = string.Format ("正在下载的资源{0}", assetBundleName);
+            Progress += (1.0f / totalAssets) * 0.8f;
+            CurrentProgress = string.Format("正在下载的资源{0}", assetBundleName);
             yield return StartCoroutine(DownLoadAssets(url, assetBundleName, assetbundleManifest.GetAssetBundleHash(assetBundleName)));
         }
 
-		///释放当前联网缓存
-		donwloadManifest.Dispose();
+        ///释放当前联网缓存
+        donwloadManifest.Dispose();
 
 
-		currentProgress = "正在进行热更新补丁修复...";
-		//热更新补丁 打补丁
-		MakeHotFix.Instance.MakeHotFixFuc();
+        currentProgress = "正在进行热更新补丁修复...";
+        //热更新补丁 打补丁
+        MakeHotFix.Instance.MakeHotFixFuc();
 
-		yield return new WaitForSeconds (1);
+        yield return new WaitForSeconds(1);
 
-		//开始加载场景 转换场景功能
-		LoadSceneMgr.instance.StartLoadScene (nextLevel);
+        //开始加载场景 转换场景功能
+        LoadSceneMgr.instance.StartLoadScene(nextLevel);
 
 
-		while (LoadSceneMgr.instance.progress < 1) {
-			CurrentProgress = string.Format ("当前加载场景进度{0}%", (Mathf.CeilToInt(LoadSceneMgr.instance.progress * 100)).ToString());
-			Progress +=	LoadSceneMgr.instance.progress * 0.1f;
-			yield return new WaitForEndOfFrame();
-		}
+        while (LoadSceneMgr.instance.progress < 1)
+        {
+            CurrentProgress = string.Format("当前加载场景进度{0}%", (Mathf.CeilToInt(LoadSceneMgr.instance.progress * 100)).ToString());
+            Progress += LoadSceneMgr.instance.progress * 0.1f;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     #endregion
@@ -228,7 +237,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     {
         StartCoroutine(GetManifest(url, manifestName));
     }
- 
+
     #region 用户要使用的方法
 
     /// <summary>
@@ -237,12 +246,12 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     /// <returns></returns>
     public static Object Load(string assetName资源名)
     {
-        
+
         if (caches资源包与所有对应的资源数据 != null)
         {
             ///转成小写
             assetName资源名 = assetName资源名.ToLower();
- 
+
             foreach (var abName键值对 in caches资源包与所有对应的资源数据)
             {
                 ///找到了指定资源对应的资源包名
@@ -279,11 +288,13 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         //System.Object
         //UnityEngine.Object
 
-        
         if (caches资源包与所有对应的资源数据 != null)
         {
             ///转成小写
             assetName资源名 = assetName资源名.ToLower();
+
+            assetName资源名 = ChangePathToFileName("effects/","");
+            assetName资源名 = ChangePathToFileName("configs/json/","");
 
             foreach (var abName键值对 in caches资源包与所有对应的资源数据)
             {
@@ -301,7 +312,6 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         }
         else
         {
-            
             T obj = Resources.Load<T>(assetName资源名);
             Debug.Log(assetName资源名 + obj);
             if (obj != null)
@@ -311,6 +321,13 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         }
 
         return null;
+    }
+
+    public static string ChangePathToFileName(string assetName,string replaceContent){
+         if(assetName.Contains(replaceContent))
+            return assetName = assetName.Replace(replaceContent,"");
+         else
+            return assetName;
     }
 
     public static GameObject CreateObj(string name)

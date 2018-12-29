@@ -40,7 +40,6 @@ public abstract class FSMBase
 
     private Action luaBecameInvisible;
     private Action luaBecameVisible;
-    private Action luaAnimatorMove;
 
     private Action luaTransformChildrenChanged;
     private Action luaTransformParentChanged;
@@ -76,8 +75,15 @@ public abstract class FSMBase
 
         TextAsset ta = ResourceMgr.Load<TextAsset>("Luas/" + name + ".lua");
 
-        Debug.Log("加载脚本" + ta);
+        Debug.Log("加载本地脚本" + ta);
+
         if (ta == null)
+        {
+            ta = ResourceMgr.Load<TextAsset>(name + ".lua");
+            Debug.Log("读取AB包中脚本" + name);
+        }
+
+        if(ta == null)
             return;
 
         scriptEnv = LuaEv.SMachine.NewTable();
@@ -102,7 +108,7 @@ public abstract class FSMBase
         scriptEnv.Get("OnCollisionExit", out luaCollisionExit);
         scriptEnv.Get("OnBecameInvisible", out luaBecameInvisible);
         scriptEnv.Get("OnBecameVisible", out luaBecameVisible);
-        scriptEnv.Get("OnAnimatorMove", out luaAnimatorMove);
+
         scriptEnv.Get("OnTransformChildrenChanged", out luaTransformChildrenChanged);
         scriptEnv.Get("OnTransformParentChanged", out luaTransformParentChanged);
         scriptEnv.Get("OnApplicationPause", out luaApplicationPause);
@@ -140,11 +146,6 @@ public abstract class FSMBase
     public virtual void OnBecameVisible()
     {
         if (luaBecameVisible != null) { luaBecameVisible(); }
-    }
-
-    public virtual void OnAnimatorMove()
-    {
-        if (luaAnimatorMove != null) { luaAnimatorMove(); }
     }
 
     public virtual void OnCollisionEnter(Collision other)

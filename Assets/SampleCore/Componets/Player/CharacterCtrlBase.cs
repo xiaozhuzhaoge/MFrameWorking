@@ -151,14 +151,6 @@ public class CharacterCtrlBase : MonoBehaviour
             playerFsm.CurrentState.OnCollisionStay(other);
     }
 
-    /// <summary>
-    /// Callback for processing animation movements for modifying root motion.
-    /// </summary>
-    void OnAnimatorMove()
-    {
-        if (playerFsm.CurrentState != null)
-            playerFsm.CurrentState.OnAnimatorMove();
-    }
 
     private void OnEnable()
     {

@@ -56,6 +56,7 @@
      <Compile Include="Assets\Mill\Tools\Editor\ExcelToJson\ExcelTools.cs" />
      <Compile Include="Assets\Mill\Tools\Editor\ExcelToJson\ExcelUtility.cs" />
      <Compile Include="Assets\Mill\Tools\Editor\LuaInspector.cs" />
+     <Compile Include="Assets\Mill\Tools\Editor\SGTextAsset.cs" />
      <Compile Include="Assets\Mill\Tweening\Editor\EventDelegateEditor.cs" />
      <Compile Include="Assets\Mill\Tweening\Editor\NGUIEditorTools.cs" />
      <Compile Include="Assets\Mill\Tweening\Editor\NGUISettings.cs" />

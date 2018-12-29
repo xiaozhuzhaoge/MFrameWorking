@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbb4dbf55b33b04e9b77680b85048db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: http://localhost:50274/ABS/
+  url: http://localhost/ABS/
   manifestName: StreamingAssets
   nextLevel: Login
 --- !u!4 &1118817880

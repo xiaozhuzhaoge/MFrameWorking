@@ -9,6 +9,7 @@ Time = CS.UnityEngine.Time;
 local mc = nil
 
 function OnEnter()
+   Debug.Log("Target",self.owner)
    mc = self.owner:GetComponent(typeof(CharacterCtrlBase))
 end
 
@@ -21,7 +22,7 @@ function OnUpdate()
    if(moveDir ~= Vector3.zero) then
       self.cc.transform.rotation = Quaternion.Slerp(self.cc.transform.rotation, Quaternion.LookRotation(moveDir), mc.rotationSpeed * Time.fixedDeltaTime);
    end
-   self.ani:SetFloat("speed", dir.sqrMagnitude * mc.speed);
+   self.ani:SetFloat("speed", dir.magnitude * mc.speed);
 end
 
  

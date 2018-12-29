@@ -88,7 +88,6 @@
      <Compile Include="Assets\Mill\Sample\ConfigInfo.cs" />
      <Compile Include="Assets\Mill\Sample\MusicConfig.cs" />
      <Compile Include="Assets\Mill\Sample\MusicConfigInfo.cs" />
-     <Compile Include="Assets\Mill\Tools\SGTextAsset.cs" />
      <Compile Include="Assets\Mill\Tools\Utility.cs" />
      <Compile Include="Assets\Mill\Tweening\Internal\AnimationOrTween.cs" />
      <Compile Include="Assets\Mill\Tweening\Internal\EventDelegate.cs" />

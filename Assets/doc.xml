@@ -6091,11 +6091,6 @@
              </summary>
              <param name="other">The Collision data associated with this collision.</param>
             </member>
-        <member name="M:CharacterCtrlBase.OnAnimatorMove">
-             <summary>
-             Callback for processing animation movements for modifying root motion.
-             </summary>
-            </member>
         <member name="M:CharacterCtrlBase.OnDisable">
              <summary>
              This function is called when the behaviour becomes disabled or inactive.

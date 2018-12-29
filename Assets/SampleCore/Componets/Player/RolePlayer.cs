@@ -26,7 +26,7 @@ public class RolePlayer : CharacterCtrlBase
             }
         }
     }
-    public override void OnFixedUpdate()
+    public override void OnUpdate()
     {
         CheckOnGround();
     }

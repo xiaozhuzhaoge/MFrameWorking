@@ -75,12 +75,12 @@ public abstract class FSMBase
 
         TextAsset ta = ResourceMgr.Load<TextAsset>("Luas/" + name + ".lua");
 
-        Debug.Log("加载本地脚本" + ta);
+        //Debug.Log("加载本地脚本" + ta);
 
         if (ta == null)
         {
             ta = ResourceMgr.Load<TextAsset>(name + ".lua");
-            Debug.Log("读取AB包中脚本" + name);
+            //Debug.Log("读取AB包中脚本" + name);
         }
 
         if(ta == null)
@@ -93,7 +93,7 @@ public abstract class FSMBase
         meta.Dispose();
 
         scriptEnv.Set("self", this);
-        LuaEv.SMachine.DoString(ta.text, "FSMBase", scriptEnv);
+        LuaEv.SMachine.DoString(ta.text, name, scriptEnv);
 
         scriptEnv.Get("OnEnter", out luaEnter);
         scriptEnv.Get("OnUpdate", out luaUpdate);

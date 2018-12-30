@@ -36,7 +36,7 @@ public partial class ConfigInfo : MonoSingleton<ConfigInfo> {
             
         //    info.Invoke(ConfigInfo.Instance, null);
         //}
-
+        Debug.LogError("开始读取配置表");
         RegisterConfigHandler<MusicConfig>("Configs/json/musics", musicConfig);
         RegisterConfigHandler<SkillChainConfig>("Configs/json/SkillChain", skillChainConfig);
         ConfigInfo.ReadAllConfigsFuc();
@@ -47,7 +47,7 @@ public partial class ConfigInfo : MonoSingleton<ConfigInfo> {
     /// 读取资源表配置
     /// </summary>
     public void ReadConfigs() {
-        JsonArray summary = SimpleJson.SimpleJson.DeserializeObject<JsonArray>(ConfigReader.ReadConfig("Configs/Configs", ""));
+        JsonArray summary = SimpleJson.SimpleJson.DeserializeObject<JsonArray>(ConfigReader.ReadConfig("Configs/json/Configs", ""));
         ConfigSummary s = null;
         foreach (var data in summary) {
             s = new ConfigSummary((JsonObject)data);

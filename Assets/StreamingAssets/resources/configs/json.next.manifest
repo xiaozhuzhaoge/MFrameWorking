@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1202928711
+CRC: 2092223267
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 326653f9852f976e1f3c5e6b954a08cf
+    Hash: 80c8c2bd478ee301d4b2f33457acd0f0
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5ad585dd02dfb5016c0dad519eab8f49
@@ -14,4 +14,5 @@ ClassTypes:
 Assets:
 - Assets/Mill/Assets/Resources/Configs/json/SkillChain.json
 - Assets/Mill/Assets/Resources/Configs/json/musics.json
+- Assets/Mill/Assets/Resources/Configs/json/Configs.json
 Dependencies: []

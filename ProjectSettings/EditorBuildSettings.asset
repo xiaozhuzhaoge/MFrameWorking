@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Mill/Assets/Scenes/Login.unity
+    guid: 749b0ffe4e9fdd344833c310375804c2
+  - enabled: 1
+    path: Assets/Mill/Assets/Scenes/LuaWithAB.unity
+    guid: 63f810dc8356d3a49a8404e3c0eeee75
+  - enabled: 1
+    path: Assets/Mill/Assets/Scenes/Main.unity
+    guid: d51a1393d0656f944a3b01225a1806ce
+  - enabled: 1
+    path: Assets/Mill/Assets/Scenes/UI.unity
+    guid: f7718772346144142a4f12ca0ffbbd8f

@@ -5,12 +5,12 @@ CharacterCtrlBase = CS.CharacterCtrlBase
 Debug = CS.UnityEngine.Debug
 Quaternion = CS.UnityEngine.Quaternion;
 Time = CS.UnityEngine.Time;
+RolePlayer = CS.RolePlayer
 
 local mc = nil
 
 function OnEnter()
-   Debug.Log("Target",self.owner)
-   mc = self.owner:GetComponent(typeof(CharacterCtrlBase))
+   mc = self.owner:GetComponent(typeof(RolePlayer))
 end
 
 

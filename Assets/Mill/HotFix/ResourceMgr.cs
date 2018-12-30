@@ -14,6 +14,11 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     public string url = "http://localhost/ABS/";
     public string manifestName = "StreamingAssets";
     public string nextLevel = "Login";
+    /// <summary>
+    /// 是否使用AB包加载功能
+    /// </summary>
+    [SerializeField]
+    private bool UserAb;
 
     #region 本地资源处理方法
 
@@ -157,7 +162,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         ///1.如果本地不存在这个资源 直接下载 直接保存到本地缓存中
         ///2.如果本地存在这个资源进行 hashcode对比 如果不一样进行下载解析资源包 如果一样解析本地资源包
         WWW download = WWW.LoadFromCacheOrDownload(url + abName, hashCode);
-        Debug.Log("下载资源包 " + url + abName + " 哈希值 " + hashCode);
+        //Debug.Log("下载资源包 " + url + abName + " 哈希值 " + hashCode);
         ///等待HTTP请求返回
         yield return download;
 
@@ -167,7 +172,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
 
         foreach (var assetPath in ab.GetAllAssetNames())
         {
-            Debug.Log(assetPath);
+            //Debug.Log(assetPath);
             string temp = assetPath.Substring(assetPath.LastIndexOf("/") + 1);
             temp = temp.Remove(temp.LastIndexOf("."));
             AddIntoCacheAssets(abName, temp, assetPath);
@@ -184,6 +189,16 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         yield return donwloadManifest;
 
         AssetBundle ab = donwloadManifest.assetBundle;
+        if(donwloadManifest.error != null){
+            Debug.LogError("请确保你已连接至网络");
+            yield break;
+        }
+
+        if(ab == null){
+            Debug.LogError("资源包不存在！" + url + abName);
+            yield break;
+        }
+     
         AddAbToCache(ab.name, ab);
 
         assetbundleManifest = ab.LoadAsset<AssetBundleManifest>("assetbundlemanifest");
@@ -211,15 +226,33 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
 
 
         currentProgress = "正在进行热更新补丁修复...";
+    #if HOTFIX_ENABLE
         //热更新补丁 打补丁
         MakeHotFix.Instance.MakeHotFixFuc();
-
+    #endif
         yield return new WaitForSeconds(1);
 
         //开始加载场景 转换场景功能
         LoadSceneMgr.instance.StartLoadScene(nextLevel);
 
 
+        while (LoadSceneMgr.instance.progress < 1)
+        {
+            CurrentProgress = string.Format("当前加载场景进度{0}%", (Mathf.CeilToInt(LoadSceneMgr.instance.progress * 100)).ToString());
+            Progress += LoadSceneMgr.instance.progress * 0.1f;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    /// <summary>
+    /// 加载本地资源
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator LoadlocalResource()
+    {
+        currentProgress = "正在解析资源包数据...";
+        LoadSceneMgr.instance.StartLoadScene(nextLevel);
+        Progress = 0.1f;
         while (LoadSceneMgr.instance.progress < 1)
         {
             CurrentProgress = string.Format("当前加载场景进度{0}%", (Mathf.CeilToInt(LoadSceneMgr.instance.progress * 100)).ToString());
@@ -235,7 +268,10 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
 
     public void Start()
     {
-        StartCoroutine(GetManifest(url, manifestName));
+        if (UserAb)
+            StartCoroutine(GetManifest(url, manifestName));
+        else
+            StartCoroutine(LoadlocalResource());
     }
 
     #region 用户要使用的方法
@@ -251,6 +287,9 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         {
             ///转成小写
             assetName资源名 = assetName资源名.ToLower();
+
+            assetName资源名 = ChangePathToFileName(assetName资源名,"effects/");
+            assetName资源名 = ChangePathToFileName(assetName资源名,"configs/json/");
 
             foreach (var abName键值对 in caches资源包与所有对应的资源数据)
             {
@@ -293,8 +332,9 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
             ///转成小写
             assetName资源名 = assetName资源名.ToLower();
 
-            assetName资源名 = ChangePathToFileName("effects/","");
-            assetName资源名 = ChangePathToFileName("configs/json/","");
+            assetName资源名 = ChangePathToFileName(assetName资源名,"effects/");
+            assetName资源名 = ChangePathToFileName(assetName资源名,"configs/json/");
+            //Debug.Log("资源名" + assetName资源名);
 
             foreach (var abName键值对 in caches资源包与所有对应的资源数据)
             {
@@ -313,7 +353,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
         else
         {
             T obj = Resources.Load<T>(assetName资源名);
-            Debug.Log(assetName资源名 + obj);
+            //Debug.Log(assetName资源名 + obj);
             if (obj != null)
             {
                 return obj;

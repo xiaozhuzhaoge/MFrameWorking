@@ -4,14 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using SimpleJson;
 
-
-
 public class ConfigReader
 {
 	public static string ReadConfig (string name, string content)
 	{
 		string _content = null;
 		if (String.IsNullOrEmpty (content)) {
+			Debug.Log(name);
 			TextAsset ta = ResourceMgr.Load<TextAsset> (name);
 		    _content = ta.text;
            
@@ -69,6 +68,8 @@ public class ConfigReader
 		}
 		
 		cache.Remove (configName);
+		Debug.Log("插入配置表名为" + configName + "Infos " +  infos);
+		
 		cache.Add (configName, infos);
 		callback (infos);
 	}

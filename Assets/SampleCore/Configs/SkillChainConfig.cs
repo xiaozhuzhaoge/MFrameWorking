@@ -36,6 +36,8 @@ public class SkillChainConfig : ConfigMode
     /// <param name="groupId"></param>
     /// <returns></returns>
     public static List<SkillChainConfig> GetSkillChains(int groupId) {
+        if (!ConfigInfo.Instance._skillChainGroup.ContainsKey(groupId))
+            return null;
         return ConfigInfo.Instance._skillChainGroup[groupId];
     }
 }

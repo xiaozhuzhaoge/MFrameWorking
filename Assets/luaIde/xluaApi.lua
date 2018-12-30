@@ -282,7 +282,6 @@ function CS.FSMBase:OnTriggerStay(other) end
 function CS.FSMBase:OnTriggerExit(other) end
 function CS.FSMBase:OnBecameInvisible() end
 function CS.FSMBase:OnBecameVisible() end
-function CS.FSMBase:OnAnimatorMove() end
 --[[
 	@other CS.UnityEngine.Collision
 --]]

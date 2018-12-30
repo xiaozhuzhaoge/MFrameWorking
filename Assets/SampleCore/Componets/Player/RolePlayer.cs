@@ -10,7 +10,6 @@ public class RolePlayer : CharacterCtrlBase
 
     public override void OnAwake()
     {
-
         WeaponFollow = Utility.FindChild(transform, "WeaponPoint");
         if (WeaponFollow != null)
             WeaponFollow.gameObject.layer = LayerMask.NameToLayer(SelfWeaponLayer);

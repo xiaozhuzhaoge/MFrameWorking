@@ -404,6 +404,11 @@
              AB下载路径
              </summary>
             </member>
+        <member name="F:ResourceMgr.UserAb">
+             <summary>
+             是否使用AB包加载功能
+             </summary>
+            </member>
         <member name="F:ResourceMgr.caches资源包缓存">
              <summary>
              键为资源包名 值为资源包对象
@@ -455,6 +460,12 @@
              <param name="url">服务器地址</param>
              <param name="abName">资源包名</param>
              <param name="hashCode">资源包哈希值</param>
+             <returns></returns>
+            </member>
+        <member name="M:ResourceMgr.LoadlocalResource">
+             <summary>
+             加载本地资源
+             </summary>
              <returns></returns>
             </member>
         <member name="F:ResourceMgr.assetbundleManifest">
@@ -6203,6 +6214,16 @@
         <member name="M:CharacterCtrlBase.FreezeFrame(System.Int32)">
              <summary>
              帧冻结 
+             </summary>
+            </member>
+        <member name="F:EnemyPlayer.agent">
+             <summary>
+             寻路组件
+             </summary>
+            </member>
+        <member name="F:EnemyPlayer.nmo">
+             <summary>
+             寻路遮挡物
              </summary>
             </member>
         <member name="M:SkillChainConfig.GetSkillChains(System.Int32)">

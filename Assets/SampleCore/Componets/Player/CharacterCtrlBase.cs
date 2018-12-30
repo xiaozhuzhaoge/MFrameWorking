@@ -223,7 +223,7 @@ public class CharacterCtrlBase : MonoBehaviour
         {
             if (currentFsmState != value)
             {
-                Debug.Log("移动状态机" + value);
+                //Debug.Log("移动状态机" + value);
                 playerFsm.MoveState(value);
             }
 
@@ -236,29 +236,28 @@ public class CharacterCtrlBase : MonoBehaviour
     /// </summary>
     void RegisterStates()
     {
-
         ///注册动画帧事件
         List<SkillChainConfig> SkillChains = SkillChainConfig.GetSkillChains(skillChainGroupId);
-
+        if(SkillChains != null)
         for (int i = 0; i < SkillChains.Count; i++)
         {
             Utility.RigisterAnimationEvent(ani, SkillChains[i].animationStateName, SkillChains[i].functionName, SkillChains[i].doPercent, SkillChains[i].instruction);
         }
 
         ///设置根节点状态信息
-        playerFsm.SetRoot(new SkillState(playerFsm, fsm.ActiveStateName));
+        playerFsm.SetRoot(new SkillState(playerFsm, skillChainGroupId + fsm.ActiveStateName));
 
         for (int i = 0; i < fsm.FsmStates.Length; i++)
         {
             ///抛出根节点状态信息
-            if (fsm.FsmStates[i].Name.Equals(fsm.ActiveStateName))
+            if (fsm.FsmStates[i].Name.Equals(skillChainGroupId + fsm.ActiveStateName))
             {
                 continue;
             }
-            playerFsm.RegisterState(new SkillState(playerFsm, fsm.FsmStates[i].Name));
+            playerFsm.RegisterState(new SkillState(playerFsm, skillChainGroupId + fsm.FsmStates[i].Name));
         }
 
-        Debug.Log("根节点" + playerFsm.RootState.Name);
+        //Debug.Log("根节点" + skillChainGroupId + playerFsm.RootState.Name);
     }
 
     #region 技能脚本
@@ -312,9 +311,11 @@ public class CharacterCtrlBase : MonoBehaviour
     {
 
         IHitAnalysis beHit = hit.collider.GetComponent<IHitAnalysis>();
+        if(beHit != null)
         if (!BeHits.Contains(beHit))
         {
             BeHits.Enqueue(beHit);
+            
             beHit.BeHit(hit.point);
             FreezeFrame(10);
             if (callback != null)

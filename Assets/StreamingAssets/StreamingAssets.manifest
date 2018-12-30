@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1746675664
+CRC: 1976857051
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -23,20 +23,17 @@ AssetBundleManifest:
       Name: materials.next
       Dependencies: {}
     Info_5:
-      Name: resources/configs.next
-      Dependencies: {}
-    Info_6:
       Name: resources/configs/json.next
       Dependencies: {}
-    Info_7:
+    Info_6:
       Name: animators.next
       Dependencies: {}
-    Info_8:
+    Info_7:
       Name: fsmtemple.next
       Dependencies: {}
-    Info_9:
+    Info_8:
       Name: resources/effects.next
       Dependencies: {}
-    Info_10:
+    Info_9:
       Name: resources/luas.next
       Dependencies: {}

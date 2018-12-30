@@ -52,10 +52,15 @@ public class CharacterCtrlBase : MonoBehaviour
         if (playerFsm.CurrentState != null)
             playerFsm.CurrentState.OnUpdate();
 
-        if (fsm != null && playerFsm != null)
+        if (fsm != null)
+        {
             if (playerFsm.GetState(fsm.ActiveStateName) != null)
+            {
                 CurrentFsmState = fsm.ActiveStateName;
-
+            }
+        
+        }
+            
         OnUpdate();
     }
 
@@ -223,10 +228,9 @@ public class CharacterCtrlBase : MonoBehaviour
         {
             if (currentFsmState != value)
             {
-                //Debug.Log("移动状态机" + value);
                 playerFsm.MoveState(value);
             }
-
+           
             currentFsmState = value;
         }
     }
@@ -245,16 +249,17 @@ public class CharacterCtrlBase : MonoBehaviour
         }
 
         ///设置根节点状态信息
-        playerFsm.SetRoot(new SkillState(playerFsm, skillChainGroupId + fsm.ActiveStateName));
+        //Debug.Log("根节点" + fsm.ActiveStateName);
+        playerFsm.SetRoot(new SkillState(playerFsm, skillChainGroupId, fsm.ActiveStateName));
 
         for (int i = 0; i < fsm.FsmStates.Length; i++)
         {
             ///抛出根节点状态信息
-            if (fsm.FsmStates[i].Name.Equals(skillChainGroupId + fsm.ActiveStateName))
+            if (fsm.FsmStates[i].Name.Equals(fsm.ActiveStateName))
             {
                 continue;
             }
-            playerFsm.RegisterState(new SkillState(playerFsm, skillChainGroupId + fsm.FsmStates[i].Name));
+            playerFsm.RegisterState(new SkillState(playerFsm, skillChainGroupId, fsm.FsmStates[i].Name));
         }
 
         //Debug.Log("根节点" + skillChainGroupId + playerFsm.RootState.Name);

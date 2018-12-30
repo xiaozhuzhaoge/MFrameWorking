@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// 状态及管理器 用于管理状态机逻辑
@@ -119,7 +120,6 @@ public class FSMMgr {
     /// <param name="name"></param>
     /// <returns></returns>
     public FSMBase GetState(string name) {
-
         if (!IsContainState(name))
         {
             return null;

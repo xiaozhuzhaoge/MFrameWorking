@@ -24,6 +24,8 @@ public abstract class FSMBase
         }
     }
 
+    private int preFixId;
+
     private LuaTable scriptEnv;
     private Action luaEnter;
     private Action luaUpdate;
@@ -55,6 +57,22 @@ public abstract class FSMBase
         get { return ownerMgr.owner.GetComponent<PlayMakerFSM>(); }
     }
 
+    /// <summary>
+    /// 前缀ID 和技能组Id相对
+    /// </summary>
+    public int PreFixId
+    {
+        get
+        {
+            return preFixId;
+        }
+
+        set
+        {
+            preFixId = value;
+        }
+    }
+
     public FSMBase() { }
 
     public FSMBase(params object[] datas)
@@ -69,17 +87,20 @@ public abstract class FSMBase
     /// <param name="datas"></param>
     public virtual void OnDataAnalysis(params object[] datas)
     {
-
+        //Debug.Log("长度？" + datas.Length);
         ownerMgr = datas[0] as FSMMgr;
-        Name = datas[1] as string;
+        preFixId = Convert.ToInt32(datas[1]);
+        Name = datas[2] as string;
 
-        TextAsset ta = ResourceMgr.Load<TextAsset>("Luas/" + name + ".lua");
+        //Debug.Log("Luas/" + preFixId + name + ".lua");
+
+        TextAsset ta = ResourceMgr.Load<TextAsset>("Luas/" + preFixId + name + ".lua");
 
         //Debug.Log("加载本地脚本" + ta);
 
         if (ta == null)
         {
-            ta = ResourceMgr.Load<TextAsset>(name + ".lua");
+            ta = ResourceMgr.Load<TextAsset>(preFixId + name + ".lua");
             //Debug.Log("读取AB包中脚本" + name);
         }
 
@@ -93,7 +114,7 @@ public abstract class FSMBase
         meta.Dispose();
 
         scriptEnv.Set("self", this);
-        LuaEv.SMachine.DoString(ta.text, name, scriptEnv);
+        LuaEv.SMachine.DoString(ta.text, preFixId + name, scriptEnv);
 
         scriptEnv.Get("OnEnter", out luaEnter);
         scriptEnv.Get("OnUpdate", out luaUpdate);

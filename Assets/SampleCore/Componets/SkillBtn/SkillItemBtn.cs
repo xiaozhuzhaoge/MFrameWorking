@@ -9,7 +9,7 @@ public class SkillItemBtn : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     public int Index;
     public bool isPress;
 
- 
+    public KeyCode code;
     public void OnPointerDown(PointerEventData eventData)
     {
         isPress = true;
@@ -21,4 +21,18 @@ public class SkillItemBtn : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         isPress = false;
         AttackMenu.Instance.OnButtonClick(Index, isPress);
     }
+
+    //public void FixedUpdate()
+    //{
+    //    if (Input.GetKeyDown(code))
+    //    {
+    //        isPress = true;
+    //        AttackMenu.Instance.OnButtonClick(Index, isPress);
+    //    }
+    //    if (Input.GetKeyUp(code))
+    //    {
+    //        isPress = false;
+    //        AttackMenu.Instance.OnButtonClick(Index, isPress);
+    //    }
+    //}
 }

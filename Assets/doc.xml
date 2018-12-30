@@ -9,6 +9,11 @@
              状态机命名
              </summary>
             </member>
+        <member name="P:FSMBase.PreFixId">
+             <summary>
+             前缀ID 和技能组Id相对
+             </summary>
+            </member>
         <member name="M:FSMBase.OnDataAnalysis(System.Object[])">
              <summary>
              用于解析状态机数据

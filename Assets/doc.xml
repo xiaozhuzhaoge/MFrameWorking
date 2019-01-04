@@ -79,6 +79,70 @@
              <param name="root"></param>
              <returns></returns>
             </member>
+        <member name="M:FSMMgr.GetLuaTable(System.String)">
+             <summary>
+             获取指定状态机Luatable
+             </summary>
+             <param name="name"></param>
+             <returns></returns>
+            </member>
+        <member name="F:StateController.ID">
+             <summary>
+             ID
+             </summary>
+            </member>
+        <member name="M:StateController.LateUpdate">
+             <summary>
+             LateUpdate is called every frame, if the Behaviour is enabled.
+             It is called after all Update functions have been called.
+             </summary>
+            </member>
+        <member name="M:StateController.OnTriggerEnter(UnityEngine.Collider)">
+             <summary>
+             OnTriggerEnter is called when the Collider other enters the trigger.
+             </summary>
+             <param name="other">The other Collider involved in this collision.</param>
+            </member>
+        <member name="M:StateController.OnTriggerStay(UnityEngine.Collider)">
+             <summary>
+             OnTriggerStay is called once per frame for every Collider other
+             that is touching the trigger.
+             </summary>
+             <param name="other">The other Collider involved in this collision.</param>
+            </member>
+        <member name="M:StateController.OnTriggerExit(UnityEngine.Collider)">
+             <summary>
+             OnTriggerExit is called when the Collider other has stopped touching the trigger.
+             </summary>
+             <param name="other">The other Collider involved in this collision.</param>
+            </member>
+        <member name="M:StateController.OnCollisionEnter(UnityEngine.Collision)">
+             <summary>
+             OnCollisionEnter is called when this collider/rigidbody has begun
+             touching another rigidbody/collider.
+             </summary>
+             <param name="other">The Collision data associated with this collision.</param>
+            </member>
+        <member name="M:StateController.OnDisable">
+             <summary>
+             This function is called when the behaviour becomes disabled or inactive.
+             </summary>
+            </member>
+        <member name="M:StateController.OnBecameVisible">
+             <summary>
+             OnBecameVisible is called when the renderer became visible by any camera.
+             </summary>
+            </member>
+        <member name="M:StateController.OnDestroy">
+             <summary>
+             This function is called when the MonoBehaviour will be destroyed.
+             </summary>
+            </member>
+        <member name="M:StateController.RegisterStates">
+             <summary>
+             连接底层与LUA层的脚本桥梁 
+             </summary>
+            </member>
         <member name="P:MessageCenter.CenterPool">
              <summary>
              消息池
@@ -488,6 +552,13 @@
              </summary>
              <typeparam name="T"></typeparam>
              <param name="assetName资源名"></param>
+             <returns></returns>
+            </member>
+        <member name="M:ResourceMgr.CreateObj(System.String)">
+             <summary>
+             创建游戏物体 指定名字
+             </summary>
+             <param name="name">资源相对路径</param>
              <returns></returns>
             </member>
         <member name="M:MusicConfig.GetMusic(System.String)">
@@ -6070,61 +6141,9 @@
              Gets a value indicating whether the escape input was used to hide a window in this frame.
              </summary>
             </member>
-        <member name="F:CharacterCtrlBase.skillChainGroupId">
+        <member name="M:CharacterCtrlBase.AnimationEvents">
              <summary>
-             技能组ID
-             </summary>
-            </member>
-        <member name="M:CharacterCtrlBase.LateUpdate">
-             <summary>
-             LateUpdate is called every frame, if the Behaviour is enabled.
-             It is called after all Update functions have been called.
-             </summary>
-            </member>
-        <member name="M:CharacterCtrlBase.OnTriggerEnter(UnityEngine.Collider)">
-             <summary>
-             OnTriggerEnter is called when the Collider other enters the trigger.
-             </summary>
-             <param name="other">The other Collider involved in this collision.</param>
-            </member>
-        <member name="M:CharacterCtrlBase.OnTriggerStay(UnityEngine.Collider)">
-             <summary>
-             OnTriggerStay is called once per frame for every Collider other
-             that is touching the trigger.
-             </summary>
-             <param name="other">The other Collider involved in this collision.</param>
-            </member>
-        <member name="M:CharacterCtrlBase.OnTriggerExit(UnityEngine.Collider)">
-             <summary>
-             OnTriggerExit is called when the Collider other has stopped touching the trigger.
-             </summary>
-             <param name="other">The other Collider involved in this collision.</param>
-            </member>
-        <member name="M:CharacterCtrlBase.OnCollisionEnter(UnityEngine.Collision)">
-             <summary>
-             OnCollisionEnter is called when this collider/rigidbody has begun
-             touching another rigidbody/collider.
-             </summary>
-             <param name="other">The Collision data associated with this collision.</param>
-            </member>
-        <member name="M:CharacterCtrlBase.OnDisable">
-             <summary>
-             This function is called when the behaviour becomes disabled or inactive.
-             </summary>
-            </member>
-        <member name="M:CharacterCtrlBase.OnBecameVisible">
-             <summary>
-             OnBecameVisible is called when the renderer became visible by any camera.
-             </summary>
-            </member>
-        <member name="M:CharacterCtrlBase.OnDestroy">
-             <summary>
-             This function is called when the MonoBehaviour will be destroyed.
-             </summary>
-            </member>
-        <member name="M:CharacterCtrlBase.RegisterStates">
-             <summary>
-             连接底层与LUA层的脚本桥梁 并且根据数据表动态匹配伤害逻辑
+             动画事件注册并且根据数据表动态匹配伤害逻辑
              </summary>
             </member>
         <member name="F:CharacterCtrlBase.BeHits">

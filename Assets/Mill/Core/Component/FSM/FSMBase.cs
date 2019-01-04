@@ -26,7 +26,7 @@ public abstract class FSMBase
 
     private int preFixId;
 
-    private LuaTable scriptEnv;
+    public LuaTable scriptEnv;
     private Action luaEnter;
     private Action luaUpdate;
     private Action luaExit;
@@ -214,7 +214,13 @@ public abstract class FSMBase
 
     public virtual void MoveState(string stateName)
     {
-        ownerMgr.MoveState(stateName);
+        //ownerMgr.CurrentState = ownerMgr.GetState(stateName);
+        fsm.SetState(stateName);
+    }
+
+    public virtual LuaTable GetLuaTable(string stateName)
+    {
+        return ownerMgr.GetLuaTable(stateName);
     }
 
 }

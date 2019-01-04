@@ -249,6 +249,11 @@ function CS.FSMBase(datas) end
 --]]
 CS.FSMBase.Name = nil
 --[[
+	CS.System.Int32
+	 Get 	 Set 
+--]]
+CS.FSMBase.PreFixId = nil
+--[[
 	CS.FSMMgr
 	 Get 	 Set 
 --]]
@@ -366,16 +371,16 @@ CS.PlayerStateBase.cc = nil
 CS.PlayerStateBase.anistateName = nil
 
 --@SuperType [luaIde#CS.PlayerStateBase]
-CS.SkillState = {}
+CS.LuaState = {}
 --[[
-	@return [luaIde#CS.SkillState]
+	@return [luaIde#CS.LuaState]
 ]]
-function CS.SkillState() end
+function CS.LuaState() end
 --[[
 	@datas CS.System.Object{}
-	@return [luaIde#CS.SkillState]
+	@return [luaIde#CS.LuaState]
 ]]
-function CS.SkillState(datas) end
+function CS.LuaState(datas) end
 
 --@SuperType [luaIde#CS.System.Object]
 CS.MLuaStateBehaviour = {}

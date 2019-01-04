@@ -9,16 +9,9 @@ using System.Security.Cryptography;
 using System.Linq;
 
 
-public class Utility : MonoBehaviour
+public class Utility : MonoSingleton<Utility>
 {
-    public static Utility instance;
      
-
-    void Awake()
-    {
-        instance = this;
-        
-    }
 
     public static void EditorDebug(params object[] args)
     {
@@ -765,13 +758,11 @@ public class Utility : MonoBehaviour
     /// <param name="obj">参数</param>
     public static void RigisterAnimationEvent(Animator ani ,string animationName, string funName, float time, string obj = null)
     {
-
         AnimationClip[] clip = ani.runtimeAnimatorController.animationClips;
         for (int i = 0; i < clip.Length; i++)
         {
             if (clip[i].name == animationName)
             {
-
                 AnimationEvent eventt = new AnimationEvent();
                 eventt.functionName = funName;
                 eventt.time = time * clip[i].length;

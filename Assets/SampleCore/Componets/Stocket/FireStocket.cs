@@ -57,7 +57,7 @@ public class FireStocket : MonoBehaviour, IHitAnalysis
     public void BeHit(params object[] args)
     {
         mat.SetColor("_EmissionColor", hit);
-        Utility.instance.WaitForFrame(3, () => { mat.SetColor("_EmissionColor", normal); });
+        Utility.Instance.WaitForFrame(3, () => { mat.SetColor("_EmissionColor", normal); });
        
 
         //if(args.Length >= 1)

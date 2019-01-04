@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using XLua;
 
 /// <summary>
 /// 状态及管理器 用于管理状态机逻辑
@@ -160,6 +161,19 @@ public class FSMMgr {
         RegisterState(root);
         MoveState(root.Name);
         return true;
+    }
+
+    /// <summary>
+    /// 获取指定状态机Luatable
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public LuaTable GetLuaTable(string name) {
+        if (IsContainState(name))
+        {
+            return GetState(name).scriptEnv;
+        }
+        return null;
     }
 
 }

@@ -238,6 +238,6 @@ public static class ExampleConfig
         typeof(Dictionary<string,int>),
         typeof(FSMBase),
         typeof(PlayerStateBase),
-        typeof(SkillState),
+        typeof(LuaState),
     };
 }

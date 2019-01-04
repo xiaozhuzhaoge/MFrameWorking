@@ -290,7 +290,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
 
             assetName资源名 = ChangePathToFileName(assetName资源名,"effects/");
             assetName资源名 = ChangePathToFileName(assetName资源名,"configs/json/");
-
+            assetName资源名 = ChangePathToFileName(assetName资源名, "prefabs/");
             foreach (var abName键值对 in caches资源包与所有对应的资源数据)
             {
                 ///找到了指定资源对应的资源包名
@@ -334,6 +334,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
 
             assetName资源名 = ChangePathToFileName(assetName资源名,"effects/");
             assetName资源名 = ChangePathToFileName(assetName资源名,"configs/json/");
+            assetName资源名 = ChangePathToFileName(assetName资源名, "prefabs/");
             //Debug.Log("资源名" + assetName资源名);
 
             foreach (var abName键值对 in caches资源包与所有对应的资源数据)
@@ -370,9 +371,15 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
             return assetName;
     }
 
+    /// <summary>
+    /// 创建游戏物体 指定名字
+    /// </summary>
+    /// <param name="name">资源相对路径</param>
+    /// <returns></returns>
     public static GameObject CreateObj(string name)
     {
         GameObject g = Load<GameObject>(name);
+        Debug.Log("生成物体" + name);
         if (g != null)
             return GameObject.Instantiate<GameObject>(g);
         else

@@ -41,7 +41,9 @@ public abstract class MUIBase : MonoBehaviour, IWindowController, IWindowAniamat
 	public bool NoBackRule;
 	public void Awake(){
 		rectTrans = transform as RectTransform;
-		
+		rectTrans.SetParent(GameObject.Find("Canvas").transform,true);
+		CreateBlackBoxCom();
+		ResetUI();
 		//注册事件到打开和关闭中心
 		MessageCenter.Instance.RegisterMessages(uiName + "OpenWindow",gameObject, OpenWindow);
 		MessageCenter.Instance.RegisterMessages(uiName + "CloseWindow",gameObject,CloseWindow);
@@ -66,17 +68,23 @@ public abstract class MUIBase : MonoBehaviour, IWindowController, IWindowAniamat
             }
 			
 			backgroundBoxCom.color = new Color(backgroundBoxCom.color.r,backgroundBoxCom.color.g,backgroundBoxCom.color.b,0.01f);
-            backgroundBoxCom.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Screen.width);
-            backgroundBoxCom.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Screen.height);
+            backgroundBoxCom.rectTransform.sizeDelta = new Vector2(Screen.width,Screen.height);
 
             if (BlackBox)
             {
 			    backgroundBoxCom.color = new Color(backgroundBoxCom.color.r,backgroundBoxCom.color.g,backgroundBoxCom.color.b,0.2f);
                 backgroundBoxCom.color = Color.black;
             }
-        }
+            backgroundBoxCom.name = "bg";
+		}
+
+
     }
 
+	public void ResetUI(){
+		rectTrans.localPosition = Vector3.zero;
+		rectTrans.localScale = Vector3.one;
+	}
 
     /// <summary>
     /// 开启界面
@@ -84,12 +92,12 @@ public abstract class MUIBase : MonoBehaviour, IWindowController, IWindowAniamat
     /// <param name="data"></param>    
     public virtual void OpenWindow(params object[] data)
     {	
-		CreateBlackBoxCom();
+		
         DoOpenAnimation();
 		IsShowed = true;
 		
 		rectTrans.SetAsLastSibling();
-		rectTrans.SetParent(GameObject.Find("Canvas").transform,true);
+		
 		gameObject.SetActive(true);
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public delegate void OnMessageEventHandler(params object[] objects);
 
-public class MessageCenter : Singleton<MessageCenter>
+public class MessageCenter : Singleton<MessageCenter>,IRecovery
 {
     public MessageCenter()
     {
@@ -31,6 +31,15 @@ public class MessageCenter : Singleton<MessageCenter>
         }
     }
 
+    /// <summary>
+    /// 回收释放资源 清除所有注册消息
+    /// </summary>
+    public void Recovery(){
+        foreach(var data in centerPool){
+            RemoveMessageHandler(data.Key);
+        }
+        centerPool.Clear();
+    }
 
     /// <summary>
     /// 查找消息数据
@@ -73,6 +82,23 @@ public class MessageCenter : Singleton<MessageCenter>
             Debug.Log("已经注册了方法");
         }
 
+    }
+    
+    /// <summary>
+    /// 清除指定消息队列
+    /// </summary>
+    /// <param name="Message"></param>
+    public void RemoveMessageHandler(string Message){
+        centerPool[Message].Clear();
+    }
+
+    /// <summary>
+    /// 清除指定对象的消息
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="Message"></param>
+    public void RemoveMessageHanlder(GameObject target,string Message){
+        centerPool[Message].Remove(target);
     }
 
     /// <summary>

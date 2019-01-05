@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// 数据匹配更新
 /// </summary>
-public class ResourceMgr : MonoSingleton<ResourceMgr>
+public class ResourceMgr : MonoSingleton<ResourceMgr>,IRecovery
 {
     /// <summary>
     /// AB下载路径
@@ -291,6 +291,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
             assetName资源名 = ChangePathToFileName(assetName资源名,"effects/");
             assetName资源名 = ChangePathToFileName(assetName资源名,"configs/json/");
             assetName资源名 = ChangePathToFileName(assetName资源名, "prefabs/");
+            assetName资源名 = ChangePathToFileName(assetName资源名, "guis/");
             foreach (var abName键值对 in caches资源包与所有对应的资源数据)
             {
                 ///找到了指定资源对应的资源包名
@@ -335,6 +336,7 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
             assetName资源名 = ChangePathToFileName(assetName资源名,"effects/");
             assetName资源名 = ChangePathToFileName(assetName资源名,"configs/json/");
             assetName资源名 = ChangePathToFileName(assetName资源名, "prefabs/");
+            assetName资源名 = ChangePathToFileName(assetName资源名, "guis/");
             //Debug.Log("资源名" + assetName资源名);
 
             foreach (var abName键值对 in caches资源包与所有对应的资源数据)
@@ -389,6 +391,22 @@ public class ResourceMgr : MonoSingleton<ResourceMgr>
     public void LoadAssetsFrom()
     {
 
+    }
+
+
+    /// <summary>
+    /// 回收释放AB包资源
+    /// </summary>
+    public void Recovery(){
+        foreach(var data in caches资源包缓存){
+            data.Value.Unload(false);
+        }
+        foreach(var data in caches资源包与所有对应的资源数据){
+            data.Value.Clear();
+        }
+
+        caches资源包缓存.Clear();
+        caches资源包与所有对应的资源数据.Clear();
     }
 
     #endregion

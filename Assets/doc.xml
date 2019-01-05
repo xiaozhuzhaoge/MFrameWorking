@@ -143,9 +143,20 @@
              连接底层与LUA层的脚本桥梁 
              </summary>
             </member>
+        <member name="M:IRecovery.Recovery">
+             <summary>
+             返还资源 
+             </summary>
+             <returns></returns>
+            </member>
         <member name="P:MessageCenter.CenterPool">
              <summary>
              消息池
+             </summary>
+            </member>
+        <member name="M:MessageCenter.Recovery">
+             <summary>
+             回收释放资源 清除所有注册消息
              </summary>
             </member>
         <member name="M:MessageCenter.FindMessage(System.String)">
@@ -162,6 +173,19 @@
              <param name="Message">消息头</param>
              <param name="go">消息接收物体</param>
              <param name="eventHandler">事件回调</param>
+            </member>
+        <member name="M:MessageCenter.RemoveMessageHandler(System.String)">
+             <summary>
+             清除指定消息队列
+             </summary>
+             <param name="Message"></param>
+            </member>
+        <member name="M:MessageCenter.RemoveMessageHanlder(UnityEngine.GameObject,System.String)">
+             <summary>
+             清除指定对象的消息
+             </summary>
+             <param name="target"></param>
+             <param name="Message"></param>
             </member>
         <member name="M:MessageCenter.FrenchMessages(UnityEngine.GameObject,System.String,System.Object[])">
              <summary>
@@ -560,6 +584,132 @@
              </summary>
              <param name="name">资源相对路径</param>
              <returns></returns>
+            </member>
+        <member name="M:ResourceMgr.Recovery">
+             <summary>
+             回收释放AB包资源
+             </summary>
+            </member>
+        <member name="M:IWindowAniamation.DoOpenAnimation">
+             <summary>
+             开启时执行的动画效果
+             </summary>
+            </member>
+        <member name="M:IWindowAniamation.DoCloseAnimation">
+             <summary>
+             关闭时执行的动画效果
+             </summary>
+            </member>
+        <member name="M:IWindowController.BackSequence(System.Object[])">
+             <summary>
+             弹出显示栈 关闭当前页面
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="T:MUIBase">
+             <summary>
+             系统界面控制基类 注意此类只兼容全局唯一的界面组件
+             </summary>
+            </member>
+        <member name="F:MUIBase.HideUnderUIs">
+             <summary>
+             关闭下面的UI
+             </summary>
+            </member>
+        <member name="F:MUIBase.backgroundBoxCom">
+             <summary>
+             下方黑色遮罩
+             </summary>
+            </member>
+        <member name="F:MUIBase.BlackBox">
+             <summary>
+             是否生成边缘黑框
+             </summary>
+            </member>
+        <member name="F:MUIBase.CanPassBlackBox">
+             <summary>
+             边缘区域是否能执行射线检测(可否点击)
+             </summary>
+            </member>
+        <member name="F:MUIBase.IsShowed">
+             <summary>
+             是否在显示
+             </summary>
+            </member>
+        <member name="F:MUIBase.NoBackRule">
+             <summary>
+             不遵循弹出规则 勾上代表主界面 不支持弹出功能
+             </summary>
+            </member>
+        <member name="M:MUIBase.CreateBlackBoxCom">
+             <summary>
+             创建黑色盒子
+             </summary>
+            </member>
+        <member name="M:MUIBase.OpenWindow(System.Object[])">
+             <summary>
+             开启界面
+             </summary>
+             <param name="data"></param>    
+            </member>
+        <member name="M:MUIBase.CloseWindow(System.Object[])">
+             <summary>
+             关闭时执行的动画效果
+             </summary>
+            </member>
+        <member name="M:MUIBase.BackSequence(System.Object[])">
+             <summary>
+             关闭当前界面 开启下层界面
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:MUIBase.DoOpenAnimation">
+             <summary>
+             执行开启动画
+             </summary>
+            </member>
+        <member name="M:MUIBase.DoCloseAnimation">
+             <summary>
+             执行关闭动画
+             </summary>
+            </member>
+        <member name="T:MUIManager">
+             <summary>
+             用于管理界面逻辑的管理器
+             </summary>
+            </member>
+        <member name="F:MUIManager.uis">
+             <summary>
+             所有UI贮存缓存
+             </summary>
+             <typeparam name="string"></typeparam>
+             <typeparam name="MUIBase"></typeparam>
+             <returns></returns>
+            </member>
+        <member name="F:MUIManager.squeneces">
+             <summary>
+             序列逻辑
+             </summary>
+             <typeparam name="MUIBase"></typeparam>
+             <returns></returns>
+            </member>
+        <member name="M:MUIManager.CreateUI(System.String)">
+             <summary>
+             创建UI物体
+             </summary>
+             <param name="uiName"></param>
+             <returns></returns>
+            </member>
+        <member name="M:MUIManager.Recovery">
+             <summary>
+             回收释放AB包资源
+             </summary>
+            </member>
+        <member name="T:StackList`1">
+             <summary>
+             使用链表制作栈的操作方式
+             </summary>
+             <typeparam name="T"></typeparam>
             </member>
         <member name="M:MusicConfig.GetMusic(System.String)">
              <summary>

@@ -14,6 +14,7 @@ Quaternion = CS.UnityEngine.Quaternion
 Time = CS.UnityEngine.Time
 ResourceMgr = CS.ResourceMgr
 BoxSpwaner = CS.BoxSpwaner
+MUIManager = CS.MUIManager
 
 local startTime = 0
 local durationTime = 1
@@ -45,4 +46,5 @@ function SpwanFunc(  )
     local o = ResourceMgr.CreateObj(path)
     --插入数据
     table.insert(boxs,o) 
+    
 end

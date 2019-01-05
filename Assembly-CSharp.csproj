@@ -57,6 +57,8 @@
      <Compile Include="Assets\Mill\Core\Component\Ctrls\CtrlsMgr.cs" />
      <Compile Include="Assets\Mill\Core\Component\FSM\FSMBase.cs" />
      <Compile Include="Assets\Mill\Core\Component\FSM\FSMMgr.cs" />
+     <Compile Include="Assets\Mill\Core\Component\FSM\StateController.cs" />
+     <Compile Include="Assets\Mill\Core\Component\Interfaces\IRecovery.cs" />
      <Compile Include="Assets\Mill\Core\Component\MessageCenter\MessageCenter.cs" />
      <Compile Include="Assets\Mill\Core\Data\JsonReader\ConfigClass\IConfig.cs" />
      <Compile Include="Assets\Mill\Core\Data\JsonReader\ConfigCore\ConfigCore.cs" />
@@ -80,8 +82,13 @@
      <Compile Include="Assets\Mill\HotFix\LuaDoSomthing.cs" />
      <Compile Include="Assets\Mill\HotFix\MakeHotFix.cs" />
      <Compile Include="Assets\Mill\HotFix\ResourceMgr.cs" />
+     <Compile Include="Assets\Mill\MUI\Base\IWindowAnimation.cs" />
+     <Compile Include="Assets\Mill\MUI\Base\IWindowController.cs" />
+     <Compile Include="Assets\Mill\MUI\Base\MUIBase.cs" />
+     <Compile Include="Assets\Mill\MUI\Base\MUIManager.cs" />
      <Compile Include="Assets\Mill\MUI\Base\UIBase.cs" />
      <Compile Include="Assets\Mill\MUI\Base\UIManager.cs" />
+     <Compile Include="Assets\Mill\MUI\Base\WindowLuaBehaviour.cs" />
      <Compile Include="Assets\Mill\MUI\UISystem\LoginUI.cs" />
      <Compile Include="Assets\Mill\MUI\UISystem\Window1.cs" />
      <Compile Include="Assets\Mill\MUI\UISystem\Window2.cs" />
@@ -1121,15 +1128,17 @@
      <Compile Include="Assets\ProjectAssets\RPG and MMO UI 6\Scripts\UI\Window\UIWindowManager.cs" />
      <Compile Include="Assets\SampleCore\Componets\BattleAttack\IHitAnalysis.cs" />
      <Compile Include="Assets\SampleCore\Componets\BattleAttack\SlashHitTarget.cs" />
+     <Compile Include="Assets\SampleCore\Componets\BoxSpwaner\BoxSpwaner.cs" />
      <Compile Include="Assets\SampleCore\Componets\CameraFollow\CameraFollow.cs" />
      <Compile Include="Assets\SampleCore\Componets\JoySticker\JoySticker.cs" />
      <Compile Include="Assets\SampleCore\Componets\Player\AIBehaviour.cs" />
      <Compile Include="Assets\SampleCore\Componets\Player\CharacterCtrlBase.cs" />
+     <Compile Include="Assets\SampleCore\Componets\Player\EnemyPlayer.cs" />
      <Compile Include="Assets\SampleCore\Componets\Player\PlayerStateBase.cs" />
      <Compile Include="Assets\SampleCore\Componets\Player\RolePlayer.cs" />
      <Compile Include="Assets\SampleCore\Componets\SkillBtn\AttackMenu.cs" />
      <Compile Include="Assets\SampleCore\Componets\SkillBtn\SkillItemBtn.cs" />
-     <Compile Include="Assets\SampleCore\Componets\StateMachine\SkillState.cs" />
+     <Compile Include="Assets\SampleCore\Componets\StateMachine\LuaState.cs" />
      <Compile Include="Assets\SampleCore\Componets\Stocket\FireStocket.cs" />
      <Compile Include="Assets\SampleCore\Configs\SkillChainConfig.cs" />
      <Compile Include="Assets\SampleCore\Configs\SkillChainConfigInfo.cs" />
@@ -1245,17 +1254,21 @@
      <None Include="Assets\Plugins\XWeaponTrail\readme.txt" />
      <None Include="Assets\Plugins\PostProcessing\Editor Resources\UI\Trackball.shader" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Bloom.cginc" />
+     <None Include="Assets\Mill\Assets\Resources\Luas\1002NormalState.lua.txt" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\TAA.shader" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
      <None Include="Assets\XLua\Src\Editor\Template\TemplateCommon.lua.txt" />
      <None Include="Assets\XLua\Src\Editor\Template\LuaEnumWrap.tpl.txt" />
      <None Include="Assets\ProjectAssets\ImagyVFX\Shaders\HdrShakeDissolve.shader" />
+     <None Include="Assets\Mill\Assets\Resources\Luas\1003Spwan.lua.txt" />
      <None Include="Assets\ProjectAssets\RPG and MMO UI 6\Changelog.txt" />
+     <None Include="Assets\Mill\Assets\Resources\Luas\1001NormalState.lua.txt" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\TAA.cginc" />
      <None Include="Assets\ProjectAssets\RPG and MMO UI 6\Shaders\UIOverlay.shader" />
      <None Include="Assets\Plugins\XWeaponTrail\Model\readme.txt" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\GrainGen.shader" />
+     <None Include="Assets\Mill\Assets\Resources\Luas\1003Start.lua.txt" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\FXAA.shader" />
      <None Include="Assets\ProjectAssets\ImagyVFX\Shaders\AddHDRBlend.shader" />
      <None Include="Assets\XLua\Resources\perf\profiler.lua.txt" />
@@ -1273,6 +1286,7 @@
      <None Include="Assets\ProjectAssets\ImagyVFX\Shaders\SimpleDistortion.shader" />
      <None Include="Assets\XLua\Src\Editor\Template\LuaRegister.tpl.txt" />
      <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
+     <None Include="Assets\Mill\Assets\Resources\Luas\1003Destroy.lua.txt" />
      <None Include="Assets\XLua\Src\Editor\Template\LuaInterfaceBridge.tpl.txt" />
      <None Include="Assets\XLua\Src\Editor\Template\LuaClassWrap.tpl.txt" />
      <None Include="Assets\ProjectAssets\ImagyVFX\Readme.txt" />
@@ -1286,7 +1300,6 @@
      <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
      <None Include="Assets\ProjectAssets\PlayMaker\Editor\UnityEngine.UI.xml" />
      <None Include="Assets\XLua\Src\Editor\Template\PackUnpack.tpl.txt" />
-     <None Include="Assets\Mill\Assets\Resources\Luas\NormalState.lua.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

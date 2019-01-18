@@ -41,7 +41,7 @@ public abstract class MUIBase : MonoBehaviour, IWindowController, IWindowAniamat
 	public bool NoBackRule;
 	public void Awake(){
 		rectTrans = transform as RectTransform;
-		rectTrans.SetParent(GameObject.Find("Canvas").transform,true);
+		rectTrans.SetParent(GameObject.Find("Canvas").transform,false);
 		CreateBlackBoxCom();
 		ResetUI();
 		//注册事件到打开和关闭中心
@@ -64,16 +64,17 @@ public abstract class MUIBase : MonoBehaviour, IWindowController, IWindowAniamat
             if (backgroundBoxCom == null)
             {
                 backgroundBoxCom = new GameObject().AddComponent<Image>();
-                backgroundBoxCom.rectTransform.SetParent(transform);
+                backgroundBoxCom.rectTransform.SetParent(transform,false);
             }
 			
 			backgroundBoxCom.color = new Color(backgroundBoxCom.color.r,backgroundBoxCom.color.g,backgroundBoxCom.color.b,0.01f);
-            backgroundBoxCom.rectTransform.sizeDelta = new Vector2(Screen.width,Screen.height);
+            backgroundBoxCom.rectTransform.anchorMin = Vector2.zero;
+            backgroundBoxCom.rectTransform.anchorMax = Vector2.one;
 
             if (BlackBox)
             {
-			    backgroundBoxCom.color = new Color(backgroundBoxCom.color.r,backgroundBoxCom.color.g,backgroundBoxCom.color.b,0.2f);
                 backgroundBoxCom.color = Color.black;
+			    backgroundBoxCom.color = new Color(backgroundBoxCom.color.r,backgroundBoxCom.color.g,backgroundBoxCom.color.b,0.2f);
             }
             backgroundBoxCom.name = "bg";
 		}

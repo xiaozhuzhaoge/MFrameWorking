@@ -24,7 +24,7 @@ public abstract class FSMBase
         }
     }
 
-    private int preFixId;
+    private string preFixId;
 
     public LuaTable scriptEnv;
     private Action luaEnter;
@@ -60,7 +60,7 @@ public abstract class FSMBase
     /// <summary>
     /// 前缀ID 和技能组Id相对
     /// </summary>
-    public int PreFixId
+    public string PreFixId
     {
         get
         {
@@ -89,7 +89,7 @@ public abstract class FSMBase
     {
         //Debug.Log("长度？" + datas.Length);
         ownerMgr = datas[0] as FSMMgr;
-        preFixId = Convert.ToInt32(datas[1]);
+        preFixId = datas[1].ToString();
         Name = datas[2] as string;
 
         //Debug.Log("Luas/" + preFixId + name + ".lua");

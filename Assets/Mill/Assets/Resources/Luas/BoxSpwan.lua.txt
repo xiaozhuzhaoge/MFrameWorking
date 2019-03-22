@@ -1,0 +1,50 @@
+--[[
+    luaide  模板位置位于 Template/FunTemplate/NewFileTemplate.lua 其中 Template 为配置路径 与luaide.luaTemplatesDir
+    luaide.luaTemplatesDir 配置 https://www.showdoc.cc/web/#/luaide?page_id=713062580213505
+    author:{author}
+    time:2019-01-04 12:03:16
+]]
+
+UnityEngine = CS.UnityEngine
+Vector3 = UnityEngine.Vector3
+Camera = UnityEngine.Camera
+CharacterCtrlBase = CS.CharacterCtrlBase
+Debug = CS.UnityEngine.Debug
+Quaternion = CS.UnityEngine.Quaternion
+Time = CS.UnityEngine.Time
+ResourceMgr = CS.ResourceMgr
+BoxSpwaner = CS.BoxSpwaner
+MUIManager = CS.MUIManager
+
+local startTime = 0
+local durationTime = 1
+local path = 'Prefabs/bxo'
+local maxTime = 2
+local time = 0
+
+boxs = {}
+
+function OnEnter(  )
+    -- body
+    startTime = Time.time
+end
+
+function OnUpdate(  )
+    if(Time.time - startTime > durationTime) then
+       Debug.Log(time)
+       time = time + 1
+       startTime = Time.time
+       SpwanFunc()
+    end    
+    if(time >= maxTime) then
+        self:MoveState("Destroy")
+    end
+end
+
+function SpwanFunc(  )
+    Debug.Log("Spwan")
+    local o = ResourceMgr.CreateObj(path)
+    --插入数据
+    table.insert(boxs,o) 
+    
+end

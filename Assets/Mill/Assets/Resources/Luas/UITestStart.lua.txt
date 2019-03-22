@@ -1,0 +1,17 @@
+UnityEngine = CS.UnityEngine
+Vector3 = UnityEngine.Vector3
+Camera = UnityEngine.Camera
+CharacterCtrlBase = CS.CharacterCtrlBase
+Debug = CS.UnityEngine.Debug
+Quaternion = CS.UnityEngine.Quaternion
+Time = CS.UnityEngine.Time
+ResourceMgr = CS.ResourceMgr;
+
+local path = "GUIs/BagUI"
+
+function Start()
+   local go = ResourceMgr.CreateObj(path)
+   Debug.Log(go)
+   local luac = go:AddComponent(typeof(CS.LuaComponent))
+   
+end

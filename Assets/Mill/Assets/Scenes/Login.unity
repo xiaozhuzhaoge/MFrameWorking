@@ -2944,6 +2944,47 @@ Transform:
   m_Father: {fileID: 256711446}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &720439513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 720439514}
+  - component: {fileID: 720439515}
+  m_Layer: 0
+  m_Name: UITest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &720439514
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720439513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.8546395, y: 0.20586205, z: -0.52583313}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &720439515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720439513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e047bded48f4f8b4893a1558a935860a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luaScriptName: UITestStart
 --- !u!1 &723028920
 GameObject:
   m_ObjectHideFlags: 0
@@ -4219,12 +4260,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b199a737e1fed994b82cde8952057e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 1001
+  ID: SwordMan
   cc: {fileID: 0}
   speed: 3.5
   ani: {fileID: 0}
   rotationSpeed: 10
   SelfWeaponLayer: PlayerWeapon
+  GroupIdFromConfig: 1001
   isJumpingUp: 0
   checkLength: 0.2
   WeaponFollow: {fileID: 0}
@@ -6741,7 +6783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e5faae032746a499a5d40b86819993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 1003
+  ID: Box
 --- !u!114 &1585829327
 MonoBehaviour:
   m_ObjectHideFlags: 0

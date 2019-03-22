@@ -1,0 +1,38 @@
+--[[
+   1002 怪物普通状态逻辑
+   默认巡逻逻辑    
+--]]
+UnityEngine = CS.UnityEngine
+Vector3 = UnityEngine.Vector3
+Camera = UnityEngine.Camera
+CharacterCtrlBase = CS.CharacterCtrlBase
+Debug = CS.UnityEngine.Debug
+Quaternion = CS.UnityEngine.Quaternion
+Time = CS.UnityEngine.Time
+EnemyPlayer = CS.EnemyPlayer
+
+local mc = nil
+local target = nil
+local seekArea = 10
+
+function OnEnter()
+    mc = self.owner:GetComponent(typeof(EnemyPlayer))
+    target = CS.UnityEngine.GameObject.FindGameObjectWithTag("Player")
+end
+
+
+function OnUpdate()
+    local distance = Vector3.Distance(self.owner.transform.position, target.transform.position)
+    if (distance < seekArea and distance > 1) then
+        mc.nmo.enabled = false -- 关闭动态遮挡物
+        mc.agent.enabled = true -- 开启寻路模式
+        mc.agent:SetDestination(target.transform.position)
+    elseif (distance > 0 and distance < 1) then
+        mc.agent.enabled = false
+        mc.nmo.enabled = true
+        mc.transform.rotation = Quaternion.LookRotation(target.transform.position - self.owner.transform.position)
+    end
+    self.ani:SetFloat("speed", mc.agent.velocity.magnitude);
+end
+
+

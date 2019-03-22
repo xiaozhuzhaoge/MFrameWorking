@@ -224,14 +224,6 @@
     "instruction": "RadiusPenetrated|50|20|5"
   },
   {
-    "id": 410029.0,
-    "groupid": 1001.0,
-    "AnimationStateName": "OrientalSword_COMBOATTACK04",
-    "FunctionName": "CastEffect",
-    "DoPercent": 0.31,
-    "instruction": "ThrowBoxPenetrated|0,1,0|-1,0,1|10|Effects/AuraWave|5|90"
-  },
-  {
     "id": 410030.0,
     "groupid": 1001.0,
     "AnimationStateName": "OrientalSword_COMBOATTACK04",

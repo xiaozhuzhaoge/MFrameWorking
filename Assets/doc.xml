@@ -86,11 +86,6 @@
              <param name="name"></param>
              <returns></returns>
             </member>
-        <member name="F:StateController.ID">
-             <summary>
-             ID
-             </summary>
-            </member>
         <member name="M:StateController.LateUpdate">
              <summary>
              LateUpdate is called every frame, if the Behaviour is enabled.
@@ -148,6 +143,12 @@
              返还资源 
              </summary>
              <returns></returns>
+            </member>
+        <member name="M:LuaComponent.OnDataAnalysis(System.Object[])">
+             <summary>
+             用于解析状态机数据
+             </summary>
+             <param name="datas"></param>
             </member>
         <member name="P:MessageCenter.CenterPool">
              <summary>

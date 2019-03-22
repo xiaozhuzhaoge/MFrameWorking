@@ -15,6 +15,9 @@ public class CharacterCtrlBase : StateController
     public string SelfWeaponLayer;
     public float CurrentNormalizedTime { get { return fsm.FsmVariables.GetFsmFloat("CurrentNormalizedTime").Value; } }
 
+    public int GroupIdFromConfig;
+
+
     #region Life_Recycle
 
     public override void OnAwake(){
@@ -36,11 +39,12 @@ public class CharacterCtrlBase : StateController
     public virtual void AnimationEvents()
     {
         ///注册动画帧事件
-        List<SkillChainConfig> SkillChains = SkillChainConfig.GetSkillChains(ID);
+        List<SkillChainConfig> SkillChains = SkillChainConfig.GetSkillChains(GroupIdFromConfig);
         if(SkillChains != null)
         for (int i = 0; i < SkillChains.Count; i++)
         {
             Utility.RigisterAnimationEvent(ani, SkillChains[i].animationStateName, SkillChains[i].functionName, SkillChains[i].doPercent, SkillChains[i].instruction);
+       
         }
     }
     #endregion

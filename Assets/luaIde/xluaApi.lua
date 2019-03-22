@@ -249,7 +249,7 @@ function CS.FSMBase(datas) end
 --]]
 CS.FSMBase.Name = nil
 --[[
-	CS.System.Int32
+	CS.System.String
 	 Get 	 Set 
 --]]
 CS.FSMBase.PreFixId = nil
@@ -258,6 +258,11 @@ CS.FSMBase.PreFixId = nil
 	 Get 	 Set 
 --]]
 CS.FSMBase.ownerMgr = nil
+--[[
+	CS.XLua.LuaTable
+	 Get 	 Set 
+--]]
+CS.FSMBase.scriptEnv = nil
 --[[
 	@datas CS.System.Object{}
 --]]
@@ -312,6 +317,11 @@ function CS.FSMBase:OnDisable() end
 	@stateName CS.System.String
 --]]
 function CS.FSMBase:MoveState(stateName) end
+--[[
+	@stateName CS.System.String
+	return CS.XLua.LuaTable
+--]]
+function CS.FSMBase:GetLuaTable(stateName) end
 
 --@SuperType [luaIde#CS.FSMBase]
 CS.PlayerStateBase = {}
@@ -381,6 +391,22 @@ function CS.LuaState() end
 	@return [luaIde#CS.LuaState]
 ]]
 function CS.LuaState(datas) end
+
+--@SuperType [luaIde#CS.UnityEngine.MonoBehaviour]
+CS.LuaComponent = {}
+--[[
+	@return [luaIde#CS.LuaComponent]
+]]
+function CS.LuaComponent() end
+--[[
+	CS.System.String
+	 Get 	 Set 
+--]]
+CS.LuaComponent.luaScriptName = nil
+--[[
+	@datas CS.System.Object{}
+--]]
+function CS.LuaComponent:OnDataAnalysis(datas) end
 
 --@SuperType [luaIde#CS.System.Object]
 CS.MLuaStateBehaviour = {}

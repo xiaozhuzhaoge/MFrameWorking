@@ -2392,12 +2392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c7c9e6f5195bf4ca96773231d10269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillChainGroupId: 1002
+  ID: Enmey
   cc: {fileID: 0}
   speed: 3.5
   ani: {fileID: 0}
   rotationSpeed: 10
-  fsm: {fileID: 0}
   SelfWeaponLayer: 
   isJumpingUp: 0
   checkLength: 0

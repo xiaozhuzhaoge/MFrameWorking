@@ -7,10 +7,11 @@ using UnityEngine;
 public class StateController : MonoBehaviour
 {
 
+    [Tooltip("状态ID 最好和当前游戏物体名字挂钩")]
     /// <summary>
     /// ID
     /// </summary>
-    public int ID;
+    public string ID;
     private FSMMgr playfsm;
     public FSMMgr playerFsm { set { playfsm = value; }
         get {
@@ -48,7 +49,7 @@ public class StateController : MonoBehaviour
 
     public virtual void OnStart()
     {
-
+         
     }
 
     // Update is called once per frame
